@@ -56,6 +56,7 @@ public class DishesController {
 		dish_selected.setIsRecommended(dish.getIsRecommended());
 		dish_selected.setIsSuggested(dish.getIsSuggested());
 		dish_selected.setIsHighlighted(dish.getIsHighlighted());
+		dish_selected.setIsAvailable(dish.getIsAvailable());
 		dish_selected.setCategory(dish.getCategory());
 		
 		dish_updated = dishesServiceImpl.updateDish(dish_selected);

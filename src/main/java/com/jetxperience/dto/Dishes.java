@@ -60,6 +60,7 @@ public class Dishes implements Serializable {
     private boolean isRecommended;
     private boolean isSuggested;
     private boolean isHighlighted;
+    private boolean isAvailable;
     private int stock;
     private short category;
     @Column(name="FOREIGN")
@@ -230,6 +231,26 @@ public class Dishes implements Serializable {
      */
     public void setIsHighlighted(boolean aIsHighlighted) {
         isHighlighted = aIsHighlighted;
+    }
+    
+    /**
+     * Access method for isHighlighted.
+     *
+     * @return true if and only if isHighlighted is currently true
+     */
+    public boolean getIsAvailable() {
+    	
+        return isAvailable;
+    }
+
+    /**
+     * Setter method for isHighlighted.
+     *
+     * @param aIsHighlighted the new value for isHighlighted
+     */
+    public void setIsAvailable(boolean isAvailable) {
+    	
+    	isAvailable = isAvailable;
     }
 
     /**
