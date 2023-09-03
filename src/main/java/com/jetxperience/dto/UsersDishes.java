@@ -25,7 +25,7 @@ public class UsersDishes implements Serializable {
     private Integer lockFlag;
 
     @Column(nullable=false)
-    private boolean isEssential;
+    private boolean isAvailable;
 
     public int getId() {
         return id;
@@ -59,11 +59,11 @@ public class UsersDishes implements Serializable {
         this.lockFlag = lockFlag;
     }
 
-    public boolean isEssential() {
-        return isEssential;
+    public boolean getIsAvailable() {
+        return isAvailable;
     }
 
-    public void setEssential(boolean isEssential) {
-        this.isEssential = isEssential;
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 }

@@ -25,7 +25,7 @@ public class UsersIngredients implements Serializable {
     private Integer lockFlag;
 
     @Column(nullable=false)
-    private boolean isAvailable;
+    private boolean isDisliked;
 
     public int getId() {
         return id;
@@ -59,11 +59,11 @@ public class UsersIngredients implements Serializable {
         this.lockFlag = lockFlag;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public boolean isDisliked() {
+        return isDisliked;
     }
 
-    public void setAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
+    public void setAvailable(boolean isDisliked) {
+        this.isDisliked = isDisliked;
     }
 }
