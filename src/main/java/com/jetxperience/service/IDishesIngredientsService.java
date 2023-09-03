@@ -7,11 +7,11 @@ public interface IDishesIngredientsService {
 
 	public List<DishesIngredients> listDishesIngredients();
 	
-	public DishesIngredients newDishIngredients(DishesIngredients dishIngredient);
+	public DishesIngredients newDishIngredient(DishesIngredients dishIngredient);
 	
 	public DishesIngredients dishIngredientById(int id);
 	
-	public DishesIngredients updateDishesIngredients(DishesIngredients dishIngredient);
+	public DishesIngredients updateDishIngredient(DishesIngredients dishIngredient);
 	
 	public void deleteDishIngredient(int id);
 }

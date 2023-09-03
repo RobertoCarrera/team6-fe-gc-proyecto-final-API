@@ -19,25 +19,25 @@ public class RolesServiceImpl implements IRolesService {
 	}
 
 	@Override
-	public Roles newRol(Roles roles) {
+	public Roles newRole(Roles roles) {
 
 		return iRolesDAO.save(roles);
 	}
 
 	@Override
-	public Roles rolByID(int id) {
+	public Roles roleByID(int id) {
 
 		return iRolesDAO.findById(id).get();
 	}
 
 	@Override
-	public Roles updateRol(Roles roles) {
+	public Roles updateRole(Roles roles) {
 
 		return iRolesDAO.save(roles);
 	}
 
 	@Override
-	public void deleteRol(int id) {
+	public void deleteRole(int id) {
 
 		iRolesDAO.deleteById(id);
 	}

@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface ICategoriesService {
 
-	public List<Categories> listCategory();
+	public List<Categories> listCategories();
 	
 	public Categories newCategory(Categories category);
 	

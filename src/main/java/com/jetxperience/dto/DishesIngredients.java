@@ -69,11 +69,12 @@ public class DishesIngredients implements Serializable {
         this.quantity = quantity;
     }
 
-    public boolean isEssential() {
+    public boolean getIsEssential() {
+    	
         return isEssential;
     }
 
-    public void setEssential(boolean isEssential) {
+    public void setIsEssential(boolean isEssential) {
         this.isEssential = isEssential;
     }
 }

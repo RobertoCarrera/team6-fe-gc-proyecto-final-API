@@ -11,7 +11,7 @@ public interface IComplaintsService {
 	
 	public Complaints complaintByID(int id);
 	
-	public Complaints updateCategory(Complaints complaint);
+	public Complaints updateComplaint(Complaints complaint);
 	
 	public void deleteComplaint(int id);
 }

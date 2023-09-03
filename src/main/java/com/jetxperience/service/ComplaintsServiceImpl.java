@@ -31,7 +31,7 @@ public class ComplaintsServiceImpl implements IComplaintsService {
 	}
 
 	@Override
-	public Complaints updateCategory(Complaints complaint) {
+	public Complaints updateComplaint(Complaints complaint) {
 		
 		return iComplaintsDAO.save(complaint);
 	}

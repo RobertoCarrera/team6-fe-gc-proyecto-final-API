@@ -19,19 +19,19 @@ public class AnswersServiceImpl implements IAnswersService {
 	}
 
 	@Override
-	public Answers newAnswers(Answers answer) {
+	public Answers newAnswer(Answers answer) {
 		
 		return iAnswersDAO.save(answer);
 	}
 
 	@Override
-	public Answers answersByID(int id) {
+	public Answers answerByID(int id) {
 		
 		return iAnswersDAO.findById(id).get();
 	}
 
 	@Override
-	public Answers updateAnswers(Answers answer) {
+	public Answers updateAnswer(Answers answer) {
 		
 		return iAnswersDAO.save(answer);
 	}

@@ -13,7 +13,7 @@ public class CategoriesServiceImpl implements ICategoriesService {
 	ICategoriesDAO iCategoriesDAO;
 	
 	@Override
-	public List<Categories> listCategory() {
+	public List<Categories> listCategories() {
 		
 		return iCategoriesDAO.findAll();
 	}

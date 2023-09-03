@@ -19,7 +19,7 @@ public class DishesIngredientsServiceImpl implements IDishesIngredientsService {
 	}
 
 	@Override
-	public DishesIngredients newDishIngredients(DishesIngredients dishIngredient) {
+	public DishesIngredients newDishIngredient(DishesIngredients dishIngredient) {
 
 		return iDishesIngredientsDAO.save(dishIngredient);
 	}
@@ -31,7 +31,7 @@ public class DishesIngredientsServiceImpl implements IDishesIngredientsService {
 	}
 
 	@Override
-	public DishesIngredients updateDishesIngredients(DishesIngredients dishIngredient) {
+	public DishesIngredients updateDishIngredient(DishesIngredients dishIngredient) {
 
 		return iDishesIngredientsDAO.save(dishIngredient);
 	}

@@ -7,7 +7,7 @@ public interface IUsersAllergensService {
     
     public List<UsersAllergens> listUsersAllergens();
 	
-	public UsersAllergens newUserAllergens(UsersAllergens userAllergen);
+	public UsersAllergens newUserAllergen(UsersAllergens userAllergen);
 	
 	public UsersAllergens userAllergenById(int id);
 	

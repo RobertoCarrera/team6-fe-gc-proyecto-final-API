@@ -7,11 +7,11 @@ public interface IAnswersService {
 
 	public List<Answers> listAnswers();
 	
-	public Answers newAnswers(Answers answers);
+	public Answers newAnswer(Answers answers);
 	
-	public Answers answersByID(int id);
+	public Answers answerByID(int id);
 	
-	public Answers updateAnswers(Answers answers);
+	public Answers updateAnswer(Answers answers);
 	
 	public void deleteAnswer(int id);
 }

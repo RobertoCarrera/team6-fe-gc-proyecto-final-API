@@ -7,11 +7,11 @@ public interface IRolesService {
 
 	public List<Roles> listRoles();
 	
-	public Roles newRol(Roles roles);
+	public Roles newRole(Roles roles);
 	
-	public Roles rolByID(int id);
+	public Roles roleByID(int id);
 	
-	public Roles updateRol(Roles roles);
+	public Roles updateRole(Roles roles);
 	
-	public void deleteRol(int id);
+	public void deleteRole(int id);
 }

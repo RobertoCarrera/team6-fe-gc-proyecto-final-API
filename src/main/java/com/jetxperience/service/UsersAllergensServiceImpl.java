@@ -19,7 +19,7 @@ public class UsersAllergensServiceImpl implements IUsersAllergensService {
 	}
 
 	@Override
-	public UsersAllergens newUserAllergens(UsersAllergens userAllergen) {
+	public UsersAllergens newUserAllergen(UsersAllergens userAllergen) {
 
 		return iUsersAllergensDAO.save(userAllergen);
 	}
