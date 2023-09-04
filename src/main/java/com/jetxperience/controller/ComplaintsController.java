@@ -18,13 +18,13 @@ public class ComplaintsController {
 	@Autowired
 	ComplaintsServiceImpl complaintsServiceImpl;
 	
-	@GetMapping("/respuestas")
+	@GetMapping("/reclamaciones")
 	public List<Complaints> listComplaints(){
 		
 		return complaintsServiceImpl.listComplaints(); 
 	}
 	
-	@GetMapping("/respuestas/{id}")
+	@GetMapping("/reclamaciones/{id}")
 	public Complaints complaintById(@PathVariable(name="id") int id) {
 		
 		Complaints complaint_byID = new Complaints();
@@ -36,13 +36,13 @@ public class ComplaintsController {
 		return complaint_byID;
 	}
 	
-	@PostMapping("/respuestas")
+	@PostMapping("/reclamaciones")
 	public Complaints newComplaint(@RequestBody Complaints complaint) {
 		
 		return complaintsServiceImpl.newComplaint(complaint);
 	}
 	 
-	@PutMapping("/respuestas/{id}")
+	@PutMapping("/reclamaciones/{id}")
 	public Complaints updateComplaint(@PathVariable(name="id")int id, @RequestBody Complaints complaint) {
 		
 		Complaints complaint_selected = new Complaints();
@@ -54,12 +54,12 @@ public class ComplaintsController {
 		
 		complaint_updated = complaintsServiceImpl.updateComplaint(complaint_selected);
 		
-		System.out.println("La respuesta actualizada es: "+complaint_updated);
+		System.out.println("La reclamación actualizada es: "+complaint_updated);
 		
 		return complaint_updated;
 	}
 	
-	@DeleteMapping("/respuestas/{id}")
+	@DeleteMapping("/reclamaciones/{id}")
 	public void deleteComplaint(@PathVariable(name="id") int id) {
 		
 		complaintsServiceImpl.deleteComplaint(id);

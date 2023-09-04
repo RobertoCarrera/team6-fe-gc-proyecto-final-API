@@ -16,33 +16,33 @@ import com.jetxperience.dto.Categories;
 public class CategoriesController {
 
 	@Autowired
-	CategoriesServiceImpl categorysServiceImpl;
+	CategoriesServiceImpl categoriessServiceImpl;
 	
-	@GetMapping("/respuestas")
+	@GetMapping("/categorias")
 	public List<Categories> listCategories(){
 		
-		return categorysServiceImpl.listCategories(); 
+		return categoriessServiceImpl.listCategories(); 
 	}
 	
-	@GetMapping("/respuestas/{id}")
+	@GetMapping("/categorias/{id}")
 	public Categories categoryById(@PathVariable(name="id") int id) {
 		
 		Categories category_byID = new Categories();
 		
-		category_byID = categorysServiceImpl.categoryByID(id);
+		category_byID = categoriessServiceImpl.categoryByID(id);
 		
 		System.out.println("Dish byID: "+category_byID);
 		
 		return category_byID;
 	}
 	
-	@PostMapping("/respuestas")
+	@PostMapping("/categorias")
 	public Categories newCategory(@RequestBody Categories category) {
 		
-		return categorysServiceImpl.newCategory(category);
+		return categoriessServiceImpl.newCategory(category);
 	}
 	 
-	@PutMapping("/respuestas/{id}")
+	@PutMapping("/categorias/{id}")
 	public Categories updateCategory(@PathVariable(name="id")int id, @RequestBody Categories category) {
 		
 		Categories category_selected = new Categories();
@@ -50,16 +50,16 @@ public class CategoriesController {
 
 		category_selected.setName(category.getName());
 		
-		category_updated = categorysServiceImpl.updateCategory(category_selected);
+		category_updated = categoriessServiceImpl.updateCategory(category_selected);
 		
 		System.out.println("La respuesta actualizada es: "+category_updated);
 		
 		return category_updated;
 	}
 	
-	@DeleteMapping("/respuestas/{id}")
+	@DeleteMapping("/categorias/{id}")
 	public void deleteCategory(@PathVariable(name="id") int id) {
 		
-		categorysServiceImpl.deleteCategory(id);
+		categoriessServiceImpl.deleteCategory(id);
 	}
 }
