@@ -48,7 +48,7 @@ public class IngredientsController {
 		Ingredients ingredient_selected = new Ingredients();
 		Ingredients ingredient_updated = new Ingredients();
 		
-		ingredient_selected.setIsActive(ingredient.getIsActive());
+		ingredient_selected.setActive(ingredient.isActive());
 		ingredient_selected.setName(ingredient.getName());
 		ingredient_selected.setImage(ingredient.getImage());
 		

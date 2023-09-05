@@ -1,32 +1,48 @@
 package com.jetxperience.dto;
 
-import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Version;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class UsersDishes implements Serializable {
+@Table(name = "users_dishes")
+public class UsersDishes {
 
+    // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(name="id_users")
-    private short idUsers;
-    @Column(name="id_dishes")
-    private int idDishes;
+    @ManyToOne
+    @JoinColumn(name = "id_users")
+    private Users users;
 
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
+    @ManyToOne
+    @JoinColumn(name = "id_dishes")
+    private Dishes dishes;
 
-    @Column(nullable=false)
+    @Column(name = "isAvailable")
     private boolean isAvailable;
 
+    // Constructores
+    public UsersDishes() {
+
+    }
+
+    public UsersDishes(int id, Users users, Dishes dishes, boolean isAvailable) {
+        this.id = id;
+        this.users = users;
+        this.dishes = dishes;
+        this.isAvailable = isAvailable;
+    }
+
+    // Métodos
     public int getId() {
         return id;
     }
@@ -35,35 +51,32 @@ public class UsersDishes implements Serializable {
         this.id = id;
     }
 
-    public short getIdUsers() {
-        return idUsers;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setIdUsers(short idUsers) {
-        this.idUsers = idUsers;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
-    public int getIdDishes() {
-        return idDishes;
+    public Dishes getDishes() {
+        return dishes;
     }
 
-    public void setIdDishes(int idDishes) {
-        this.idDishes = idDishes;
+    public void setDishes(Dishes dishes) {
+        this.dishes = dishes;
     }
 
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    public void setLockFlag(Integer lockFlag) {
-        this.lockFlag = lockFlag;
-    }
-
-    public boolean getIsAvailable() {
+    public boolean isAvailable() {
         return isAvailable;
     }
 
-    public void setIsAvailable(boolean isAvailable) {
+    public void setAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
+    }
+
+    @Override
+    public String toString() {
+        return "UsersDishesDTO [id=" + id + ", users=" + users + ", dishes=" + dishes + ", isAvailable=" + isAvailable + "]";
     }
 }

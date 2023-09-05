@@ -1,34 +1,48 @@
 package com.jetxperience.dto;
 
-import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Version;
 
 @Entity
-@Table(name="dishes_orders")
-public class DishesOrders implements Serializable {
+@Table(name = "dishes_orders")
+public class DishesOrders {
 
+    // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(name="id_dishes")
-    private short idDishes;
-    @Column(name="id_orders")
-    private int idOrders;
+    @ManyToOne
+    @JoinColumn(name = "id_dishes")
+    private Dishes dishes;
 
-    @Column(nullable=false)
-    private double quantity;
-    
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
+    @ManyToOne
+    @JoinColumn(name = "id_orders")
+    private Orders orders;
 
+    @Column(name = "quantity")
+    private int quantity;
+
+    // Constructores
+    public DishesOrders() {
+
+    }
+
+    public DishesOrders(int id, Dishes dishes, Orders orders, int quantity) {
+        this.id = id;
+        this.dishes = dishes;
+        this.orders = orders;
+        this.quantity = quantity;
+    }
+
+    // Métodos
     public int getId() {
         return id;
     }
@@ -37,35 +51,32 @@ public class DishesOrders implements Serializable {
         this.id = id;
     }
 
-    public short getIdDishes() {
-        return idDishes;
+    public Dishes getDishes() {
+        return dishes;
     }
 
-    public void setIdDishes(short idDishes) {
-        this.idDishes = idDishes;
+    public void setDishes(Dishes dishes) {
+        this.dishes = dishes;
     }
 
-    public int getIdOrders() {
-        return idOrders;
+    public Orders getOrders() {
+        return orders;
     }
 
-    public void setIdOrders(int idOrders) {
-        this.idOrders = idOrders;
+    public void setOrders(Orders orders) {
+        this.orders = orders;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
 
-    public void setLockFlag(Integer lockFlag) {
-        this.lockFlag = lockFlag;
+    @Override
+    public String toString() {
+        return "DishesOrdersDTO [id=" + id + ", dishes=" + dishes + ", orders=" + orders + ", quantity=" + quantity + "]";
     }
 }
