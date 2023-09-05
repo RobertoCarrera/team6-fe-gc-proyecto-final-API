@@ -48,15 +48,15 @@ public class DishesController {
 		Dishes dish_selected = new Dishes();
 		Dishes dish_updated = new Dishes();
 		
-		dish_selected.setIsActive(dish.getIsActive());
+		dish_selected.setActive(dish.isActive());
 		dish_selected.setName(dish.getName());
 		dish_selected.setImage(dish.getImage());
 		dish_selected.setCost(dish.getCost());
 		dish_selected.setDescription(dish.getDescription());
-		dish_selected.setIsRecommended(dish.getIsRecommended());
-		dish_selected.setIsSuggested(dish.getIsSuggested());
-		dish_selected.setIsHighlighted(dish.getIsHighlighted());
-		dish_selected.setIsAvailable(dish.getIsAvailable());
+		dish_selected.setRecommended(dish.isRecommended());
+		dish_selected.setSuggested(dish.isSuggested());
+		dish_selected.setHighlighted(dish.isHighlighted());
+		dish_selected.setAvailable(dish.isAvailable());
 		dish_selected.setCategory(dish.getCategory());
 		
 		dish_updated = dishesServiceImpl.updateDish(dish_selected);

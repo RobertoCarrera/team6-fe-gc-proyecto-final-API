@@ -1,29 +1,45 @@
 package com.jetxperience.dto;
 
-import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Version;
+
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class UsersRewards implements Serializable {
+@Table(name = "users_rewards")
+public class UsersRewards {
 
+    // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(name="id_users")
-    private short idUsers;
-    @Column(name="id_rewards")
-    private int idRewards;
+    @ManyToOne
+    @JoinColumn(name = "id_users")
+    private Users users;
 
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
+    @ManyToOne
+    @JoinColumn(name = "id_rewards")
+    private Rewards rewards;
 
+    // Constructores
+    public UsersRewards() {
+
+    }
+
+    public UsersRewards(int id, Users users, Rewards rewards) {
+        this.id = id;
+        this.users = users;
+        this.rewards = rewards;
+    }
+
+    // Métodos
     public int getId() {
         return id;
     }
@@ -32,27 +48,24 @@ public class UsersRewards implements Serializable {
         this.id = id;
     }
 
-    public short getIdUsers() {
-        return idUsers;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setIdUsers(short idUsers) {
-        this.idUsers = idUsers;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
-    public int getIdRewards() {
-        return idRewards;
+    public Rewards getRewards() {
+        return rewards;
     }
 
-    public void setIdRewards(int idRewards) {
-        this.idRewards = idRewards;
+    public void setRewards(Rewards rewards) {
+        this.rewards = rewards;
     }
 
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    public void setLockFlag(Integer lockFlag) {
-        this.lockFlag = lockFlag;
+    @Override
+    public String toString() {
+        return "UsersRewardsDTO [id=" + id + ", users=" + users + ", rewards=" + rewards + "]";
     }
 }

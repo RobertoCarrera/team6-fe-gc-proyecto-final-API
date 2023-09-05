@@ -48,7 +48,7 @@ public class AllergensController {
 		Allergens allergen_selected = new Allergens();
 		Allergens allergen_updated = new Allergens();
 		
-		allergen_selected.setIsActive(allergen.getIsActive());
+		allergen_selected.setActive(allergen.isActive());
 		allergen_selected.setName(allergen.getName());
 		allergen_selected.setImage(allergen.getImage());
 		

@@ -49,7 +49,7 @@ public class DishesIngredientsController {
 		DishesIngredients dishIngredient_updated = new DishesIngredients();
 
 		dishIngredient_selected.setQuantity(dishIngredient.getQuantity());
-		dishIngredient_selected.setIsEssential(dishIngredient.getIsEssential());
+		dishIngredient_selected.setEssential(dishIngredient.isEssential());
 		
 		dishIngredient_updated = dishesIngredientsServiceImpl.updateDishIngredient(dishIngredient_selected);
 		

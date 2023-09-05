@@ -2,379 +2,185 @@
 
 package com.jetxperience.dto;
 
-import java.io.Serializable;
-import java.util.LinkedHashMap;
-import java.util.Map;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Version;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-@Entity(name="dishes")
-public class Dishes implements Serializable {
+@Entity
+@Table(name = "dishes")
+public class Dishes {
 
-    /** Primary key. */
-    protected static final String PK = "id";
-
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
+    // Atributos
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(unique=true, nullable=false)
-    private short id;
-    @Column(nullable=false)
-    private boolean isActive;
-    @Column(nullable=false, length=50)
-    private String name;
-    @Column(nullable=false, length=150)
-    private String image;
-    @Column(nullable=false)
-    private double cost;
-    @Column(nullable=false, length=255)
-    private String description;
-    private boolean isRecommended;
-    private boolean isSuggested;
-    private boolean isHighlighted;
-    private boolean isAvailable;
-    private int stock;
-    private short category;
-    @Column(name="FOREIGN")
-    private String foreign;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-    /** Default constructor. */
+    @Column(name = "isActive")
+    private boolean isActive;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "image")
+    private String image;
+
+    @Column(name = "cost")
+    private float cost;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "isRecommended")
+    private boolean isRecommended;
+
+    @Column(name = "isSuggested")
+    private boolean isSuggested;
+
+    @Column(name = "isHighlighted")
+    private boolean isHighlighted;
+
+    @Column(name = "IsAvailable")
+    private boolean isAvailable;
+
+    @Column(name = "stock")
+    private int stock;
+
+    @ManyToOne
+    @JoinColumn(name = "category")
+    private Categories category;
+
+    // Constructores
     public Dishes() {
-        super();
+
     }
 
-    /**
-     * Access method for id.
-     *
-     * @return the current value of id
-     */
-    public short getId() {
+    public Dishes(int id, boolean isActive, String name, String image, float cost, String description,
+            boolean isRecommended, boolean isSuggested, boolean isHighlighted, boolean isAvailable, int stock,
+            Categories category) {
+        this.id = id;
+        this.isActive = isActive;
+        this.name = name;
+        this.image = image;
+        this.cost = cost;
+        this.description = description;
+        this.isRecommended = isRecommended;
+        this.isSuggested = isSuggested;
+        this.isHighlighted = isHighlighted;
+        this.isAvailable = isAvailable;
+        this.stock = stock;
+        this.category = category;
+    }
+
+    // Métodos
+    public int getId() {
         return id;
     }
 
-    /**
-     * Setter method for id.
-     *
-     * @param aId the new value for id
-     */
-    public void setId(short aId) {
-        id = aId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    /**
-     * Access method for isActive.
-     *
-     * @return true if and only if isActive is currently true
-     */
-    public boolean getIsActive() {
+    public boolean isActive() {
         return isActive;
     }
 
-    /**
-     * Setter method for isActive.
-     *
-     * @param aIsActive the new value for isActive
-     */
-    public void setIsActive(boolean aIsActive) {
-        isActive = aIsActive;
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
-    /**
-     * Access method for name.
-     *
-     * @return the current value of name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * Setter method for name.
-     *
-     * @param aName the new value for name
-     */
-    public void setName(String aName) {
-        name = aName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    /**
-     * Access method for image.
-     *
-     * @return the current value of image
-     */
     public String getImage() {
         return image;
     }
 
-    /**
-     * Setter method for image.
-     *
-     * @param aImage the new value for image
-     */
-    public void setImage(String aImage) {
-        image = aImage;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    /**
-     * Access method for cost.
-     *
-     * @return the current value of cost
-     */
-    public double getCost() {
+    public float getCost() {
         return cost;
     }
 
-    /**
-     * Setter method for cost.
-     *
-     * @param aCost the new value for cost
-     */
-    public void setCost(double aCost) {
-        cost = aCost;
+    public void setCost(float cost) {
+        this.cost = cost;
     }
 
-    /**
-     * Access method for description.
-     *
-     * @return the current value of description
-     */
     public String getDescription() {
         return description;
     }
 
-    /**
-     * Setter method for description.
-     *
-     * @param aDescription the new value for description
-     */
-    public void setDescription(String aDescription) {
-        description = aDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    /**
-     * Access method for isRecommended.
-     *
-     * @return true if and only if isRecommended is currently true
-     */
-    public boolean getIsRecommended() {
+    public boolean isRecommended() {
         return isRecommended;
     }
 
-    /**
-     * Setter method for isRecommended.
-     *
-     * @param aIsRecommended the new value for isRecommended
-     */
-    public void setIsRecommended(boolean aIsRecommended) {
-        isRecommended = aIsRecommended;
+    public void setRecommended(boolean isRecommended) {
+        this.isRecommended = isRecommended;
     }
 
-    /**
-     * Access method for isSuggested.
-     *
-     * @return true if and only if isSuggested is currently true
-     */
-    public boolean getIsSuggested() {
+    public boolean isSuggested() {
         return isSuggested;
     }
 
-    /**
-     * Setter method for isSuggested.
-     *
-     * @param aIsSuggested the new value for isSuggested
-     */
-    public void setIsSuggested(boolean aIsSuggested) {
-        isSuggested = aIsSuggested;
+    public void setSuggested(boolean isSuggested) {
+        this.isSuggested = isSuggested;
     }
 
-    /**
-     * Access method for isHighlighted.
-     *
-     * @return true if and only if isHighlighted is currently true
-     */
-    public boolean getIsHighlighted() {
+    public boolean isHighlighted() {
         return isHighlighted;
     }
 
-    /**
-     * Setter method for isHighlighted.
-     *
-     * @param aIsHighlighted the new value for isHighlighted
-     */
-    public void setIsHighlighted(boolean aIsHighlighted) {
-        isHighlighted = aIsHighlighted;
+    public void setHighlighted(boolean isHighlighted) {
+        this.isHighlighted = isHighlighted;
     }
-    
-    /**
-     * Access method for isHighlighted.
-     *
-     * @return true if and only if isHighlighted is currently true
-     */
-    public boolean getIsAvailable() {
-    	
+
+    public boolean isAvailable() {
         return isAvailable;
     }
 
-    /**
-     * Setter method for isHighlighted.
-     *
-     * @param aIsHighlighted the new value for isHighlighted
-     */
-    public void setIsAvailable(boolean isAvailable) {
-    	
-    	isAvailable = isAvailable;
+    public void setAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 
-    /**
-     * Access method for stock.
-     *
-     * @return the current value of stock
-     */
     public int getStock() {
         return stock;
     }
 
-    /**
-     * Setter method for stock.
-     *
-     * @param aStock the new value for stock
-     */
-    public void setStock(int aStock) {
-        stock = aStock;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    /**
-     * Access method for category.
-     *
-     * @return the current value of category
-     */
-    public short getCategory() {
+    public Categories getCategory() {
         return category;
     }
 
-    /**
-     * Setter method for category.
-     *
-     * @param aCategory the new value for category
-     */
-    public void setCategory(short aCategory) {
-        category = aCategory;
+    public void setCategory(Categories category) {
+        this.category = category;
     }
 
-    /**
-     * Access method for foreign.
-     *
-     * @return the current value of foreign
-     */
-    public String getForeign() {
-        return foreign;
-    }
-
-    /**
-     * Setter method for foreign.
-     *
-     * @param aForeign the new value for foreign
-     */
-    public void setForeign(String aForeign) {
-        foreign = aForeign;
-    }
-
-    /**
-     * Compares the key for this instance with another Dishes.
-     *
-     * @param other The object to compare to
-     * @return True if other object is instance of class Dishes and the key objects are equal
-     */
-    private boolean equalKeys(Object other) {
-        if (this==other) {
-            return true;
-        }
-        if (!(other instanceof Dishes)) {
-            return false;
-        }
-        Dishes that = (Dishes) other;
-        if (this.getId() != that.getId()) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Compares this instance with another Dishes.
-     *
-     * @param other The object to compare to
-     * @return True if the objects are the same
-     */
-    @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Dishes)) return false;
-        return this.equalKeys(other) && ((Dishes)other).equalKeys(this);
-    }
-
-    /**
-     * Returns a hash code for this instance.
-     *
-     * @return Hash code
-     */
-    @Override
-    public int hashCode() {
-        int i;
-        int result = 17;
-        i = getId();
-        result = 37*result + i;
-        return result;
-    }
-
-    /**
-     * Returns a debug-friendly String representation of this instance.
-     *
-     * @return String representation of this instance
-     */
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("[Dishes |");
-        sb.append(" id=").append(getId());
-        sb.append("]");
-        return sb.toString();
+        return "DishesDTO [id=" + id + ", isActive=" + isActive + ", name=" + name + ", image=" + image + ", cost="
+                + cost + ", description=" + description + ", isRecommended=" + isRecommended + ", isSuggested="
+                + isSuggested + ", isHighlighted=" + isHighlighted + ", isAvailable=" + isAvailable + ", stock="
+                + stock + ", category=" + category + "]";
     }
-
-    /**
-     * Return all elements of the primary key.
-     *
-     * @return Map of key names to values
-     */
-    public Map<String, Object> getPrimaryKey() {
-        Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("id", Short.valueOf(getId()));
-        return ret;
-    }
-
 }

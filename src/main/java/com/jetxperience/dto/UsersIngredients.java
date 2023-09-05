@@ -1,32 +1,49 @@
 package com.jetxperience.dto;
 
-import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Version;
+
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class UsersIngredients implements Serializable {
+@Table(name = "users_ingredients")
+public class UsersIngredients {
 
+    // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(name="id_users")
-    private short idUsers;
-    @Column(name="id_ingredients")
-    private int idIngredients;
+    @ManyToOne
+    @JoinColumn(name = "id_users")
+    private Users users;
 
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
+    @ManyToOne
+    @JoinColumn(name = "id_ingredients")
+    private Ingredients ingredients;
 
-    @Column(nullable=false)
+    @Column(name = "isDisliked")
     private boolean isDisliked;
 
+    // Constructores
+    public UsersIngredients() {
+
+    }
+
+    public UsersIngredients(int id, Users users, Ingredients ingredients, boolean isDisliked) {
+        this.id = id;
+        this.users = users;
+        this.ingredients = ingredients;
+        this.isDisliked = isDisliked;
+    }
+
+    // Métodos
     public int getId() {
         return id;
     }
@@ -35,35 +52,32 @@ public class UsersIngredients implements Serializable {
         this.id = id;
     }
 
-    public short getIdUsers() {
-        return idUsers;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setIdUsers(short idUsers) {
-        this.idUsers = idUsers;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
-    public int getIdIngredients() {
-        return idIngredients;
+    public Ingredients getIngredients() {
+        return ingredients;
     }
 
-    public void setIdIngredients(int idIngredients) {
-        this.idIngredients = idIngredients;
-    }
-
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    public void setLockFlag(Integer lockFlag) {
-        this.lockFlag = lockFlag;
+    public void setIngredients(Ingredients ingredients) {
+        this.ingredients = ingredients;
     }
 
     public boolean isDisliked() {
         return isDisliked;
     }
 
-    public void setAvailable(boolean isDisliked) {
+    public void setDisliked(boolean isDisliked) {
         this.isDisliked = isDisliked;
+    }
+
+    @Override
+    public String toString() {
+        return "UsersIngredientsDTO [id=" + id + ", users=" + users + ", ingredients=" + ingredients + ", isDisliked=" + isDisliked + "]";
     }
 }
