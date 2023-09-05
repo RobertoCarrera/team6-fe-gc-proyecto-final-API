@@ -8,9 +8,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 
 @Entity
+@Table(name="users_ingredients")
 public class UsersIngredients implements Serializable {
 
     @Id
@@ -29,11 +31,11 @@ public class UsersIngredients implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "id_users")
-    private Users id_users;
+    private Users idUsers;
     
     @ManyToOne
     @JoinColumn(name = "id_ingredients")
-    private Ingredients id_ingredients;
+    private Ingredients idIngredients;
 
     public int getId() {
         return id;
@@ -44,19 +46,19 @@ public class UsersIngredients implements Serializable {
     }
 
     public Users getIdUsers() {
-        return id_users;
+        return idUsers;
     }
 
     public void setIdUsers(Users idUsers) {
-        this.id_users = idUsers;
+        this.idUsers = idUsers;
     }
 
     public Ingredients getIdIngredients() {
-        return id_ingredients;
+        return idIngredients;
     }
 
     public void setIdIngredients(Ingredients idIngredients) {
-        this.id_ingredients = idIngredients;
+        this.idIngredients = idIngredients;
     }
 
     public Integer getLockFlag() {

@@ -11,9 +11,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 
 @Entity
+@Table(name="dishes_ingredients")
 public class DishesIngredients implements Serializable {
 
     @Id
@@ -30,12 +32,12 @@ public class DishesIngredients implements Serializable {
     private boolean isEssential;
     
     @ManyToOne
-    @JoinColumn(name = "id_dish")
-    private Dishes idDish;
+    @JoinColumn(name = "id_dishes")
+    private Dishes idDishes;
     
     @ManyToOne
-    @JoinColumn(name = "id_ingredient")
-    private Ingredients idIngredient;
+    @JoinColumn(name = "id_ingredients")
+    private Ingredients idIngredients;
 
     public int getId() {
         return id;
@@ -47,22 +49,22 @@ public class DishesIngredients implements Serializable {
 
     public Dishes getIdDishes() {
     	
-        return idDish;
+        return idDishes;
     }
 
     public void setIdDishes(Dishes idDishes) {
     	
-        this.idDish = idDishes;
+        this.idDishes = idDishes;
     }
 
     public Ingredients getIdIngredients() {
     	
-        return idIngredient;
+        return idIngredients;
     }
 
     public void setIdIngredients(Ingredients idIngredients) {
     	
-        this.idIngredient = idIngredients;
+        this.idIngredients = idIngredients;
     }
 
     public Integer getLockFlag() {

@@ -18,19 +18,14 @@ public class UsersRewards implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name="id_users")
-    private short idUsers;
-    @Column(name="id_rewards")
-    private int idRewards;
     
     @ManyToOne
     @JoinColumn(name = "id_users")
-    private Users id_users;
+    private Users idUsers;
     
     @ManyToOne
     @JoinColumn(name = "id_rewards")
-    private Rewards id_rewards;
+    private Rewards idRewards;
 
     @Version
     @Column(name="LOCK_FLAG")
@@ -44,19 +39,19 @@ public class UsersRewards implements Serializable {
         this.id = id;
     }
 
-    public short getIdUsers() {
+    public Users getIdUsers() {
         return idUsers;
     }
 
-    public void setIdUsers(short idUsers) {
+    public void setIdUsers(Users idUsers) {
         this.idUsers = idUsers;
     }
 
-    public int getIdRewards() {
+    public Rewards getIdRewards() {
         return idRewards;
     }
 
-    public void setIdRewards(int idRewards) {
+    public void setIdRewards(Rewards idRewards) {
         this.idRewards = idRewards;
     }
 

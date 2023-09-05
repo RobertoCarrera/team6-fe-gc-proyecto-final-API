@@ -21,7 +21,7 @@ public class DishesOrders {
 
     @ManyToOne
     @JoinColumn(name = "id_dish")
-    private Dishes idDish;
+    private Dishes idDishes;
 
     @ManyToOne
     @JoinColumn(name = "id_order")
@@ -37,7 +37,7 @@ public class DishesOrders {
 
     public DishesOrders(int id, Dishes dishes, Orders orders, int quantity) {
         this.id = id;
-        this.idDish = dishes;
+        this.idDishes = dishes;
         this.orders = orders;
         this.quantity = quantity;
     }
@@ -52,11 +52,11 @@ public class DishesOrders {
     }
 
     public Dishes getDishes() {
-        return idDish;
+        return idDishes;
     }
 
     public void setDishes(Dishes dishes) {
-        this.idDish = dishes;
+        this.idDishes = dishes;
     }
 
     public Orders getOrders() {
@@ -77,6 +77,6 @@ public class DishesOrders {
 
     @Override
     public String toString() {
-        return "DishesOrdersDTO [id=" + id + ", dishes=" + idDish + ", orders=" + orders + ", quantity=" + quantity + "]";
+        return "DishesOrdersDTO [id=" + id + ", dishes=" + idDishes + ", orders=" + orders + ", quantity=" + quantity + "]";
     }
 }

@@ -40,11 +40,11 @@ public class Ingredients {
     @JoinColumn(name = "allergen")
     private Allergens allergen;
     
-    @OneToMany(mappedBy = "ingredient", fetch = FetchType.LAZY)
-    private List<Dishes> dishes;
+    @OneToMany(mappedBy = "idIngredients", fetch = FetchType.LAZY)
+    private List<DishesIngredients> dishesIngredients;
     
-    @OneToMany(mappedBy = "ingredient", fetch = FetchType.LAZY)
-    private List<Users> user;
+    @OneToMany(mappedBy = "idIngredients", fetch = FetchType.LAZY)
+    private List<UsersIngredients> idUsers;
 
     // Constructores
     public Ingredients() {
