@@ -48,7 +48,7 @@ public class RewardsController {
 		Rewards reward_selected = new Rewards();
 		Rewards reward_updated = new Rewards();
 		
-		reward_selected.setIsActive(reward.getIsActive());
+		reward_selected.setActive(reward.isActive());
 		reward_selected.setName(reward.getName());
 		reward_selected.setDescription(reward.getDescription());
 		reward_selected.setCost(reward.getCost());

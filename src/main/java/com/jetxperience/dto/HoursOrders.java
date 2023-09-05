@@ -1,29 +1,45 @@
 package com.jetxperience.dto;
 
-import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Version;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class HoursOrders implements Serializable {
+@Table(name = "hours_orders")
+public class HoursOrders {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-    @Column(name="id_hours")
-    private short idHours;
-    @Column(name="id_orders")
-    private int idOrders;
-    
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
+    // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
+    @ManyToOne
+    @JoinColumn(name = "id_hours")
+    private Hours hours;
+
+    @ManyToOne
+    @JoinColumn(name = "id_orders")
+    private Orders orders;
+
+    // Constructores
+    public HoursOrders() {
+
+    }
+
+    public HoursOrders(int id, Hours hours, Orders orders) {
+        this.id = id;
+        this.hours = hours;
+        this.orders = orders;
+    }
+
+    // Métodos
     public int getId() {
         return id;
     }
@@ -31,28 +47,25 @@ public class HoursOrders implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public short getIdHours() {
-        return idHours;
+
+    public Hours getHours() {
+        return hours;
     }
 
-    public void setIdHours(short idHours) {
-        this.idHours = idHours;
+    public void setHours(Hours hours) {
+        this.hours = hours;
     }
 
-    public int getIdOrders() {
-        return idOrders;
+    public Orders getOrders() {
+        return orders;
     }
 
-    public void setIdOrders(int idOrders) {
-        this.idOrders = idOrders;
+    public void setOrders(Orders orders) {
+        this.orders = orders;
     }
 
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    public void setLockFlag(Integer lockFlag) {
-        this.lockFlag = lockFlag;
+    @Override
+    public String toString() {
+        return "HoursOrdersDTO [id=" + id + ", hours=" + hours + ", orders=" + orders + "]";
     }
 }

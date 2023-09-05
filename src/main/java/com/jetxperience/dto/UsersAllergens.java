@@ -1,29 +1,44 @@
 package com.jetxperience.dto;
 
-import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Version;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class UsersAllergens implements Serializable {
+@Table(name = "users_allergens")
+public class UsersAllergens {
 
+    // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(name="id_users")
-    private short idUsers;
-    @Column(name="id_allergens")
-    private int idAllergens;
+    @ManyToOne
+    @JoinColumn(name = "id_users")
+    private Users users;
 
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
+    @ManyToOne
+    @JoinColumn(name = "id_allergens")
+    private Allergens allergens;
 
+    // Constructores
+    public UsersAllergens() {
+
+    }
+
+    public UsersAllergens(int id, Users users, Allergens allergens) {
+        this.id = id;
+        this.users = users;
+        this.allergens = allergens;
+    }
+
+    // Métodos
     public int getId() {
         return id;
     }
@@ -32,27 +47,25 @@ public class UsersAllergens implements Serializable {
         this.id = id;
     }
 
-    public short getIdUsers() {
-        return idUsers;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setIdUsers(short idUsers) {
-        this.idUsers = idUsers;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
-    public int getIdAllergens() {
-        return idAllergens;
+    public Allergens getAllergens() {
+        return allergens;
     }
 
-    public void setIdAllergens(int idAllergens) {
-        this.idAllergens = idAllergens;
+    public void setAllergens(Allergens allergens) {
+        this.allergens = allergens;
     }
 
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    public void setLockFlag(Integer lockFlag) {
-        this.lockFlag = lockFlag;
+    @Override
+    public String toString() {
+        return "UsersAllergensDTO [id=" + id + ", users=" + users + ", allergens=" + allergens + "]";
     }
 }
+

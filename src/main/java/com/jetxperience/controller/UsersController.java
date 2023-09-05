@@ -48,7 +48,7 @@ public class UsersController {
 		Users user_selected = new Users();
 		Users user_updated = new Users();
 		
-		user_selected.setIsActive(user.getIsActive());
+		user_selected.setActive(user.isActive());
 		user_selected.setName(user.getName());
 		user_selected.setSurname(user.getSurname());
 		user_selected.setUsername(user.getUsername());

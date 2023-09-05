@@ -1,262 +1,106 @@
-// Generated with g9.
-
 package com.jetxperience.dto;
 
-import java.io.Serializable;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Version;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-@Entity(name="ingredients")
-public class Ingredients implements Serializable {
 
-    /** Primary key. */
-    protected static final String PK = "id";
+@Entity
+@Table(name = "ingredients")
+public class Ingredients {
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
+    // Atributos
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(unique=true, nullable=false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    @Column(nullable=false)
-    private boolean isActive;
-    @Column(nullable=false, length=50)
-    private String name;
-    @Column(length=150)
-    private String image;
-    private short stock;
-    private short allergen;
-    @Column(name="FOREIGN")
-    private String foreign;
 
-    /** Default constructor. */
+    @Column(name = "isActive")
+    private boolean isActive;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "image")
+    private String image;
+
+    @Column(name = "stock")
+    private int stock;
+
+    @ManyToOne
+    @JoinColumn(name = "allergen")
+    private Allergens allergen;
+
+    // Constructores
     public Ingredients() {
-        super();
+
     }
 
-    /**
-     * Access method for id.
-     *
-     * @return the current value of id
-     */
+    public Ingredients(int id, boolean isActive, String name, String image, int stock, Allergens allergen) {
+        this.id = id;
+        this.isActive = isActive;
+        this.name = name;
+        this.image = image;
+        this.stock = stock;
+        this.allergen = allergen;
+    }
+
+    // Métodos
     public int getId() {
         return id;
     }
 
-    /**
-     * Setter method for id.
-     *
-     * @param aId the new value for id
-     */
-    public void setId(int aId) {
-        id = aId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    /**
-     * Access method for isActive.
-     *
-     * @return true if and only if isActive is currently true
-     */
-    public boolean getIsActive() {
+    public boolean isActive() {
         return isActive;
     }
 
-    /**
-     * Setter method for isActive.
-     *
-     * @param aIsActive the new value for isActive
-     */
-    public void setIsActive(boolean aIsActive) {
-        isActive = aIsActive;
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
-    /**
-     * Access method for name.
-     *
-     * @return the current value of name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * Setter method for name.
-     *
-     * @param aName the new value for name
-     */
-    public void setName(String aName) {
-        name = aName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    /**
-     * Access method for image.
-     *
-     * @return the current value of image
-     */
     public String getImage() {
         return image;
     }
 
-    /**
-     * Setter method for image.
-     *
-     * @param aImage the new value for image
-     */
-    public void setImage(String aImage) {
-        image = aImage;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    /**
-     * Access method for stock.
-     *
-     * @return the current value of stock
-     */
-    public short getStock() {
+    public int getStock() {
         return stock;
     }
 
-    /**
-     * Setter method for stock.
-     *
-     * @param aStock the new value for stock
-     */
-    public void setStock(short aStock) {
-        stock = aStock;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    /**
-     * Access method for allergen.
-     *
-     * @return the current value of allergen
-     */
-    public short getAllergen() {
+    public Allergens getAllergen() {
         return allergen;
     }
 
-    /**
-     * Setter method for allergen.
-     *
-     * @param aAllergen the new value for allergen
-     */
-    public void setAllergen(short aAllergen) {
-        allergen = aAllergen;
+    public void setAllergen(Allergens allergen) {
+        this.allergen = allergen;
     }
 
-    /**
-     * Access method for foreign.
-     *
-     * @return the current value of foreign
-     */
-    public String getForeign() {
-        return foreign;
-    }
-
-    /**
-     * Setter method for foreign.
-     *
-     * @param aForeign the new value for foreign
-     */
-    public void setForeign(String aForeign) {
-        foreign = aForeign;
-    }
-
-    /**
-     * Compares the key for this instance with another Ingredients.
-     *
-     * @param other The object to compare to
-     * @return True if other object is instance of class Ingredients and the key objects are equal
-     */
-    private boolean equalKeys(Object other) {
-        if (this==other) {
-            return true;
-        }
-        if (!(other instanceof Ingredients)) {
-            return false;
-        }
-        Ingredients that = (Ingredients) other;
-        if (this.getId() != that.getId()) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Compares this instance with another Ingredients.
-     *
-     * @param other The object to compare to
-     * @return True if the objects are the same
-     */
-    @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Ingredients)) return false;
-        return this.equalKeys(other) && ((Ingredients)other).equalKeys(this);
-    }
-
-    /**
-     * Returns a hash code for this instance.
-     *
-     * @return Hash code
-     */
-    @Override
-    public int hashCode() {
-        int i;
-        int result = 17;
-        i = getId();
-        result = 37*result + i;
-        return result;
-    }
-
-    /**
-     * Returns a debug-friendly String representation of this instance.
-     *
-     * @return String representation of this instance
-     */
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("[Ingredients |");
-        sb.append(" id=").append(getId());
-        sb.append("]");
-        return sb.toString();
+        return "IngredientDTO [id=" + id + ", isActive=" + isActive + ", name=" + name + ", image=" + image + ", stock=" + stock + ", allergen=" + allergen + "]";
     }
-
-    /**
-     * Return all elements of the primary key.
-     *
-     * @return Map of key names to values
-     */
-    public Map<String, Object> getPrimaryKey() {
-        Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("id", Integer.valueOf(getId()));
-        return ret;
-    }
-
 }

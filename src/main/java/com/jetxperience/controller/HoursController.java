@@ -49,7 +49,7 @@ public class HoursController {
 		Hours hour_updated = new Hours();
 
 		hour_selected.setHour(hour.getHour());
-		hour_selected.setIsAvailable(hour.getIsAvailable());
+		hour_selected.setAvailable(hour.isAvailable());
 		
 		hour_updated = hoursServiceImpl.updateHour(hour_selected);
 		
