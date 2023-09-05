@@ -50,7 +50,6 @@ public class AnswersController {
 
 		answer_selected.setMessage(answer.getMessage());
 		answer_selected.setDateSend(answer.getDateSend());
-		answer_selected.setComplaint(answer.getComplaint());
 		
 		answer_updated = answersServiceImpl.updateAnswer(answer_selected);
 		

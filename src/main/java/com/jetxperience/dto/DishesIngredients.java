@@ -30,12 +30,12 @@ public class DishesIngredients implements Serializable {
     private boolean isEssential;
     
     @ManyToOne
-    @JoinColumn(name = "id_dishes")
-    private Dishes id_dishes;
+    @JoinColumn(name = "id_dish")
+    private Dishes idDish;
     
     @ManyToOne
-    @JoinColumn(name = "id_ingredients")
-    private Ingredients id_ingredients;
+    @JoinColumn(name = "id_ingredient")
+    private Ingredients idIngredient;
 
     public int getId() {
         return id;
@@ -47,22 +47,22 @@ public class DishesIngredients implements Serializable {
 
     public Dishes getIdDishes() {
     	
-        return id_dishes;
+        return idDish;
     }
 
     public void setIdDishes(Dishes idDishes) {
     	
-        this.id_dishes = idDishes;
+        this.idDish = idDishes;
     }
 
     public Ingredients getIdIngredients() {
     	
-        return id_ingredients;
+        return idIngredient;
     }
 
     public void setIdIngredients(Ingredients idIngredients) {
     	
-        this.id_ingredients = idIngredients;
+        this.idIngredient = idIngredients;
     }
 
     public Integer getLockFlag() {

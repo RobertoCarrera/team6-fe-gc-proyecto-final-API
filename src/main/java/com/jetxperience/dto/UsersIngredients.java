@@ -17,11 +17,6 @@ public class UsersIngredients implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="id_users")
-    private short idUsers;
-    @Column(name="id_ingredients")
-    private int idIngredients;
-
     @Version
     @Column(name="LOCK_FLAG")
     private Integer lockFlag;
@@ -48,20 +43,20 @@ public class UsersIngredients implements Serializable {
         this.id = id;
     }
 
-    public short getIdUsers() {
-        return idUsers;
+    public Users getIdUsers() {
+        return id_users;
     }
 
-    public void setIdUsers(short idUsers) {
-        this.idUsers = idUsers;
+    public void setIdUsers(Users idUsers) {
+        this.id_users = idUsers;
     }
 
-    public int getIdIngredients() {
-        return idIngredients;
+    public Ingredients getIdIngredients() {
+        return id_ingredients;
     }
 
-    public void setIdIngredients(int idIngredients) {
-        this.idIngredients = idIngredients;
+    public void setIdIngredients(Ingredients idIngredients) {
+        this.id_ingredients = idIngredients;
     }
 
     public Integer getLockFlag() {

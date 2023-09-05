@@ -57,12 +57,9 @@ public class Allergens implements Serializable {
     private String name;
     @Column(nullable=false, length=150)
     private String image;
-    
-    @OneToMany(mappedBy = "allergens", fetch = FetchType.LAZY)
-    private List<Ingredients> ingredients;
-    
-    @OneToMany(mappedBy = "allergens", fetch = FetchType.LAZY)
-    private List<UsersIngredients> users_ingredients;
+   
+    @OneToMany(mappedBy = "allergen", fetch = FetchType.LAZY)
+    private List<Ingredients> ingredient;
     
     /** Default constructor. */
     public Allergens() {

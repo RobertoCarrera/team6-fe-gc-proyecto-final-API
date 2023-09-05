@@ -25,17 +25,17 @@ public class UsersAllergens {
 
     @ManyToOne
     @JoinColumn(name = "id_allergens")
-    private Allergens allergens;
+    private Allergens allergen;
 
     // Constructores
     public UsersAllergens() {
 
     }
 
-    public UsersAllergens(int id, Users users, Allergens allergens) {
+    public UsersAllergens(int id, Users users, Allergens allergen) {
         this.id = id;
         this.users = users;
-        this.allergens = allergens;
+        this.allergen = allergen;
     }
 
     // Métodos
@@ -56,16 +56,16 @@ public class UsersAllergens {
     }
 
     public Allergens getAllergens() {
-        return allergens;
+        return allergen;
     }
 
     public void setAllergens(Allergens allergens) {
-        this.allergens = allergens;
+        this.allergen = allergens;
     }
 
     @Override
     public String toString() {
-        return "UsersAllergensDTO [id=" + id + ", users=" + users + ", allergens=" + allergens + "]";
+        return "UsersAllergensDTO [id=" + id + ", users=" + users + ", allergens=" + allergen + "]";
     }
 }
 

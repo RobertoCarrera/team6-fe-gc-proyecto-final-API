@@ -1,12 +1,16 @@
 package com.jetxperience.dto;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -35,6 +39,12 @@ public class Ingredients {
     @ManyToOne
     @JoinColumn(name = "allergen")
     private Allergens allergen;
+    
+    @OneToMany(mappedBy = "ingredient", fetch = FetchType.LAZY)
+    private List<Dishes> dishes;
+    
+    @OneToMany(mappedBy = "ingredient", fetch = FetchType.LAZY)
+    private List<Users> user;
 
     // Constructores
     public Ingredients() {

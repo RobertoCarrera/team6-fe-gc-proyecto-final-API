@@ -75,10 +75,10 @@ public class Dishes implements Serializable {
     @JoinColumn(name = "category")
     private Categories category;
     
-    @OneToMany(mappedBy = "dishes", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idDish", fetch = FetchType.LAZY)
     private List<DishesOrders> dishesOrders;
 
-    @OneToMany(mappedBy = "dishes", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idDish", fetch = FetchType.LAZY)
     private List<DishesIngredients> dishesIngredients;
 
     /** Default constructor. */

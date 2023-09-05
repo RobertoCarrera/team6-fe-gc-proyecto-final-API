@@ -50,7 +50,6 @@ public class ComplaintsController {
 
 		complaint_selected.setMessage(complaint.getMessage());
 		complaint_selected.setDateSend(complaint.getDateSend());
-		complaint_selected.setSender(complaint.getSender());
 		
 		complaint_updated = complaintsServiceImpl.updateComplaint(complaint_selected);
 		

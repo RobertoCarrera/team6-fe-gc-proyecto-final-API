@@ -58,7 +58,7 @@ public class Complaints implements Serializable {
     @Column(name="date_send", nullable=false)
     private LocalDate dateSend;
     
-    @OneToMany(mappedBy = "complaints", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "complaint", fetch = FetchType.LAZY)
     private List<Answers> answers;
     
     @ManyToOne
