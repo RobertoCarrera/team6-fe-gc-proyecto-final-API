@@ -22,7 +22,7 @@ public class HoursOrders {
 
     @ManyToOne
     @JoinColumn(name = "id_hours")
-    private Hours hours;
+    private Hours idHours;
 
     @ManyToOne
     @JoinColumn(name = "id_orders")
@@ -35,7 +35,7 @@ public class HoursOrders {
 
     public HoursOrders(int id, Hours hours, Orders orders) {
         this.id = id;
-        this.hours = hours;
+        this.idHours = hours;
         this.orders = orders;
     }
 
@@ -49,11 +49,11 @@ public class HoursOrders {
     }
 
     public Hours getHours() {
-        return hours;
+        return idHours;
     }
 
     public void setHours(Hours hours) {
-        this.hours = hours;
+        this.idHours = hours;
     }
 
     public Orders getOrders() {
@@ -66,6 +66,6 @@ public class HoursOrders {
 
     @Override
     public String toString() {
-        return "HoursOrdersDTO [id=" + id + ", hours=" + hours + ", orders=" + orders + "]";
+        return "HoursOrdersDTO [id=" + id + ", hours=" + idHours + ", orders=" + orders + "]";
     }
 }

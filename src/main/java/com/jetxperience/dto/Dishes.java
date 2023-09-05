@@ -1,4 +1,3 @@
-// Generated with g9.
 
 package com.jetxperience.dto;
 
@@ -8,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.catalina.User;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,6 +51,7 @@ public class Dishes implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "category")
+    @JsonProperty("category")
     private Categories category;
     
     @OneToMany(mappedBy = "idDishes", fetch = FetchType.LAZY)
