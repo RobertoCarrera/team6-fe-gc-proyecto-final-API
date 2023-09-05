@@ -4,12 +4,14 @@ package com.jetxperience.dto;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 
 @Entity(name="ingredients")
@@ -55,8 +57,9 @@ public class Ingredients implements Serializable {
     private String image;
     private short stock;
     private short allergen;
-    @Column(name="FOREIGN")
-    private String foreign;
+    
+    @OneToMany(mappedBy = "ingredients")
+    private List<Allergens> allergens_list;
 
     /** Default constructor. */
     public Ingredients() {
@@ -169,24 +172,6 @@ public class Ingredients implements Serializable {
      */
     public void setAllergen(short aAllergen) {
         allergen = aAllergen;
-    }
-
-    /**
-     * Access method for foreign.
-     *
-     * @return the current value of foreign
-     */
-    public String getForeign() {
-        return foreign;
-    }
-
-    /**
-     * Setter method for foreign.
-     *
-     * @param aForeign the new value for foreign
-     */
-    public void setForeign(String aForeign) {
-        foreign = aForeign;
     }
 
     /**

@@ -4,12 +4,20 @@ package com.jetxperience.dto;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.apache.catalina.User;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 
 @Entity(name="dishes")
@@ -62,9 +70,16 @@ public class Dishes implements Serializable {
     private boolean isHighlighted;
     private boolean isAvailable;
     private int stock;
-    private short category;
-    @Column(name="FOREIGN")
-    private String foreign;
+    
+    @ManyToOne
+    @JoinColumn(name = "category")
+    private Categories category;
+    
+    @OneToMany(mappedBy = "dishes", fetch = FetchType.LAZY)
+    private List<DishesOrders> dishesOrders;
+
+    @OneToMany(mappedBy = "dishes", fetch = FetchType.LAZY)
+    private List<DishesIngredients> dishesIngredients;
 
     /** Default constructor. */
     public Dishes() {
@@ -269,42 +284,6 @@ public class Dishes implements Serializable {
      */
     public void setStock(int aStock) {
         stock = aStock;
-    }
-
-    /**
-     * Access method for category.
-     *
-     * @return the current value of category
-     */
-    public short getCategory() {
-        return category;
-    }
-
-    /**
-     * Setter method for category.
-     *
-     * @param aCategory the new value for category
-     */
-    public void setCategory(short aCategory) {
-        category = aCategory;
-    }
-
-    /**
-     * Access method for foreign.
-     *
-     * @return the current value of foreign
-     */
-    public String getForeign() {
-        return foreign;
-    }
-
-    /**
-     * Setter method for foreign.
-     *
-     * @param aForeign the new value for foreign
-     */
-    public void setForeign(String aForeign) {
-        foreign = aForeign;
     }
 
     /**

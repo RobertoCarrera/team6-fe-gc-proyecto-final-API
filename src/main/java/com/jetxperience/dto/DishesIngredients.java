@@ -1,11 +1,16 @@
 package com.jetxperience.dto;
 
 import java.io.Serializable;
+
+import org.apache.catalina.User;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Version;
 
 @Entity
@@ -15,11 +20,6 @@ public class DishesIngredients implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="id_dishes")
-    private short idDishes;
-    @Column(name="id_ingredients")
-    private int idIngredients;
-
     @Version
     @Column(name="LOCK_FLAG")
     private Integer lockFlag;
@@ -28,6 +28,14 @@ public class DishesIngredients implements Serializable {
     private double quantity;
     @Column(nullable=false)
     private boolean isEssential;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_dishes")
+    private Dishes id_dishes;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_ingredients")
+    private Ingredients id_ingredients;
 
     public int getId() {
         return id;
@@ -37,20 +45,24 @@ public class DishesIngredients implements Serializable {
         this.id = id;
     }
 
-    public short getIdDishes() {
-        return idDishes;
+    public Dishes getIdDishes() {
+    	
+        return id_dishes;
     }
 
-    public void setIdDishes(short idDishes) {
-        this.idDishes = idDishes;
+    public void setIdDishes(Dishes idDishes) {
+    	
+        this.id_dishes = idDishes;
     }
 
-    public int getIdIngredients() {
-        return idIngredients;
+    public Ingredients getIdIngredients() {
+    	
+        return id_ingredients;
     }
 
-    public void setIdIngredients(int idIngredients) {
-        this.idIngredients = idIngredients;
+    public void setIdIngredients(Ingredients idIngredients) {
+    	
+        this.id_ingredients = idIngredients;
     }
 
     public Integer getLockFlag() {
