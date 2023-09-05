@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Version;
 
 @Entity
@@ -26,6 +28,14 @@ public class UsersIngredients implements Serializable {
 
     @Column(nullable=false)
     private boolean isAvailable;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_users")
+    private Users id_users;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_ingredients")
+    private Ingredients id_ingredients;
 
     public int getId() {
         return id;

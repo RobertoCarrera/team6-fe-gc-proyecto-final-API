@@ -5,12 +5,17 @@ package com.jetxperience.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 
 @Entity(name="complaints")
@@ -52,10 +57,13 @@ public class Complaints implements Serializable {
     private String message;
     @Column(name="date_send", nullable=false)
     private LocalDate dateSend;
-    @Column(nullable=false)
-    private short sender;
-    @Column(name="FOREIGN")
-    private String foreign;
+    
+    @OneToMany(mappedBy = "complaints", fetch = FetchType.LAZY)
+    private List<Answers> answers;
+    
+    @ManyToOne
+    @JoinColumn(name = "sender")
+    private Users sender;
 
     /** Default constructor. */
     public Complaints() {
@@ -114,42 +122,6 @@ public class Complaints implements Serializable {
      */
     public void setDateSend(LocalDate aDateSend) {
         dateSend = aDateSend;
-    }
-
-    /**
-     * Access method for sender.
-     *
-     * @return the current value of sender
-     */
-    public short getSender() {
-        return sender;
-    }
-
-    /**
-     * Setter method for sender.
-     *
-     * @param aSender the new value for sender
-     */
-    public void setSender(short aSender) {
-        sender = aSender;
-    }
-
-    /**
-     * Access method for foreign.
-     *
-     * @return the current value of foreign
-     */
-    public String getForeign() {
-        return foreign;
-    }
-
-    /**
-     * Setter method for foreign.
-     *
-     * @param aForeign the new value for foreign
-     */
-    public void setForeign(String aForeign) {
-        foreign = aForeign;
     }
 
     /**

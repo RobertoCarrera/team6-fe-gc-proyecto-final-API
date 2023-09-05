@@ -6,11 +6,17 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.apache.catalina.User;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 
 @Entity(name="answers")
@@ -52,9 +58,10 @@ public class Answers implements Serializable {
     private String message;
     @Column(name="date_send", nullable=false)
     private LocalDate dateSend;
-    private int complaint;
-    @Column(name="FOREIGN")
-    private String foreign;
+
+    @ManyToOne
+    @JoinColumn(name = "complaint")
+    private Complaints complaint;
 
     /** Default constructor. */
     public Answers() {
@@ -115,48 +122,6 @@ public class Answers implements Serializable {
         dateSend = aDateSend;
     }
 
-    /**
-     * Access method for complaint.
-     *
-     * @return the current value of complaint
-     */
-    public int getComplaint() {
-        return complaint;
-    }
-
-    /**
-     * Setter method for complaint.
-     *
-     * @param aComplaint the new value for complaint
-     */
-    public void setComplaint(int aComplaint) {
-        complaint = aComplaint;
-    }
-
-    /**
-     * Access method for foreign.
-     *
-     * @return the current value of foreign
-     */
-    public String getForeign() {
-        return foreign;
-    }
-
-    /**
-     * Setter method for foreign.
-     *
-     * @param aForeign the new value for foreign
-     */
-    public void setForeign(String aForeign) {
-        foreign = aForeign;
-    }
-
-    /**
-     * Compares the key for this instance with another Answers.
-     *
-     * @param other The object to compare to
-     * @return True if other object is instance of class Answers and the key objects are equal
-     */
     private boolean equalKeys(Object other) {
         if (this==other) {
             return true;

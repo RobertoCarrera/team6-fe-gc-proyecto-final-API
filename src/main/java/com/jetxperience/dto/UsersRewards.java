@@ -6,9 +6,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 
 @Entity
+@Table(name="users_rewards")
 public class UsersRewards implements Serializable {
 
     @Id
@@ -19,6 +23,14 @@ public class UsersRewards implements Serializable {
     private short idUsers;
     @Column(name="id_rewards")
     private int idRewards;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_users")
+    private Users id_users;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_rewards")
+    private Rewards id_rewards;
 
     @Version
     @Column(name="LOCK_FLAG")

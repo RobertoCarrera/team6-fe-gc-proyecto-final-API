@@ -4,12 +4,16 @@ package com.jetxperience.dto;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 
 @Entity(name="allergens")
@@ -53,7 +57,13 @@ public class Allergens implements Serializable {
     private String name;
     @Column(nullable=false, length=150)
     private String image;
-
+    
+    @OneToMany(mappedBy = "allergens", fetch = FetchType.LAZY)
+    private List<Ingredients> ingredients;
+    
+    @OneToMany(mappedBy = "allergens", fetch = FetchType.LAZY)
+    private List<UsersIngredients> users_ingredients;
+    
     /** Default constructor. */
     public Allergens() {
         super();
