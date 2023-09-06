@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.jetxperience.User;
+import com.jetxperience.dto.Users;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,19 +17,16 @@ import java.util.stream.Collectors;
  * @author Jose Marin
  */
 @Data
-public class LibraryUserDetails implements UserDetails {
+public class WebUserDetails implements UserDetails {
 
     private String userName;
     private String password;
     private List<GrantedAuthority> authorities;
 
-    public LibraryUserDetails(User user) {
-        userName = user.getEmail();
+    public WebUserDetails(Users user) {
+        userName = user.getUsername();
         password = user.getPassword();
-        authorities = Arrays.stream(user.getRoles()
-                .split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+
     }
 
     @Override
