@@ -1,4 +1,4 @@
-package com.jetxperience.exception;
+package com.jetxperience.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
