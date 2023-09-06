@@ -24,4 +24,27 @@ public class WebSecurityConfig {
 				.and()
 				.build();
 	}
+
+	@Bean
+	UserDetailsService	UserDetailsService() {
+		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+		manager.createUser(User.withUsername("admin")
+				.password(passwordEncoder().encode(rawPassword: "admin"))
+				.roles()
+				.build());
+			return manager;
+	}
+
+	@BeanAuthenticationManager authManager(HttpSecurity http, PasswordEncoder passwordEncoder) {
+		return http.getSharedObject(AuthenticationManagerBuilder.class)
+				.UserDetailsService(UserDetailsService())
+				.passwordEncoder(passwordEncoder())
+				.and()
+				.build();
+	}
+
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }
