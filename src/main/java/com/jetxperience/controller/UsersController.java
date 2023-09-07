@@ -1,71 +1,53 @@
 package com.jetxperience.controller;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import com.jetxperience.service.UsersServiceImpl;
+
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import com.jetxperience.dto.Users;
+import com.jetxperience.service.UserRecord;
+import com.jetxperience.service.UsersServiceImpl;
+
+import java.util.List;
+
+
 
 @RestController
+@RequestMapping("/users")
+@RequiredArgsConstructor
 public class UsersController {
+    private final UsersServiceImpl usersServiceImpl = new UsersServiceImpl();
 
-	@Autowired
-	UsersServiceImpl usersServiceImpl;
-	
-	@GetMapping("/usuarios")
-	public List<Users> listUsers(){
-		
-		return usersServiceImpl.listUsers(); 
-	}
-	
-	@GetMapping("/usuarios/{id}")
-	public Users userById(@PathVariable(name="id") int id) {
-		
-		Users user_byID = new Users();
-		
-		user_byID = usersServiceImpl.userByID(id);
-		
-		System.out.println("Dish byID: "+user_byID);
-		
-		return user_byID;
-	}
-	
-	@PostMapping("/usuarios")
-	public Users newUser(@RequestBody Users user) {
-		
-		return usersServiceImpl.newUser(user);
-	}
-	
-	@PutMapping("/usuarios/{id}")
-	public Users updateUser(@PathVariable(name="id")int id, @RequestBody Users user) {
-		
-		Users user_selected = new Users();
-		Users user_updated = new Users();
-		
-		user_selected.setActive(user.isActive());
-		user_selected.setName(user.getName());
-		user_selected.setSurname(user.getSurname());
-		user_selected.setUsername(user.getUsername());
-		user_selected.setPassword(user.getPassword());
-		user_selected.setRole(user.getRole());
-		user_selected.setImage(user.getImage());
-		
-		user_updated = usersServiceImpl.updateUser(user_selected);
-		
-		System.out.println("El plato actualizado es: "+user_updated);
-		
-		return user_updated;
-	}
-	
-	@DeleteMapping("/usuarios/{id}")
-	public void deleteUser(@PathVariable(name="id") int id) {
-		
-		usersServiceImpl.deleteUser(id);
-	}
+    @GetMapping("/all")
+    public ResponseEntity<List<UserRecord>> getAllUsers() {
+        List<UserRecord> users = usersServiceImpl.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Users> add(@RequestBody Users users) {
+        Users addedUser = usersServiceImpl.add(users);
+        return new ResponseEntity<>(addedUser, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<Users> getByEmail(@PathVariable("email") String email) {
+        Users user = usersServiceImpl.getUser(email);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{email}")
+    public ResponseEntity<Void> delete(@PathVariable("email") String email) {
+        usersServiceImpl.delete(email);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Users> update(@RequestBody Users users) {
+        Users updatedUser = usersServiceImpl.update(users);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
 }

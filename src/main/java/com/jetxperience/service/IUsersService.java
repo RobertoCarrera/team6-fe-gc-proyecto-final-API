@@ -1,17 +1,13 @@
 package com.jetxperience.service;
 
-import com.jetxperience.dto.Users;
 import java.util.List;
 
-public interface IUsersService {
+import com.jetxperience.dto.Users;
 
-	public List<Users> listUsers();
-	
-	public Users newUser(Users user);
-	
-	public Users userByID(int id);
-	
-	public Users updateUser(Users user);
-	
-	public void deleteUser(int id);
+public interface IUsersService {
+    Users add(Users users);
+    List<UserRecord> getAllUsers();
+    void delete(String email);
+    Users getUser(String email);
+    Users update(Users users);
 }

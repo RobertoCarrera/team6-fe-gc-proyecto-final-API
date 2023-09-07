@@ -4,15 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jetxperience.exception.UserNotFoundException;
+
 import org.json.JSONObject;
-import org.json.JSONException;
 
 /**
  * @author Samson Effes
@@ -26,12 +25,20 @@ public class JWTController {
     private final JWTService jwtService;
     private final AuthenticationManager authenticationManager;
 
+    //Constructor
+    
+    public JWTController(JWTService jwtService, AuthenticationManager authenticationManager) {
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+    }
+    
+    
     @PostMapping
     public Object getTokenForAuthenticatedUser(@RequestBody JWTAuthenticationRequest authRequest){
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(authRequest.getName(), authRequest.getPassword()));
         if (authentication.isAuthenticated()){
-            String token =  jwtService.generateToken(authRequest.getUserName());
+            String token =  jwtService.generateToken(authRequest.getName());
             JSONObject jsonObject = new JSONObject("{\"token\": \"" + token + "\"}");
             jsonObject.put("token",token );
             return jsonObject.toMap();//devuelve token por body
