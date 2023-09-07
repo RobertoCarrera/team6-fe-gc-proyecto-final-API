@@ -59,4 +59,5 @@ public class Roles {
     public String toString() {
         return "RolesDTO [id=" + id + ", name=" + name + "]";
     }
+
 }

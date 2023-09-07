@@ -35,8 +35,8 @@ public class Users {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "password")
     private String password;
@@ -64,7 +64,7 @@ public class Users {
         this.isActive = isActive;
         this.name = name;
         this.surname = surname;
-        this.username = username;
+        this.email = username;
         this.password = password;
         this.image = image;
         this.points = points;
@@ -104,12 +104,12 @@ public class Users {
         this.surname = surname;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -146,7 +146,9 @@ public class Users {
 
     @Override
     public String toString() {
-        return "UsersDTO [id=" + id + ", isActive=" + isActive + ", name=" + name + ", surname=" + surname + ", username=" + username + ", password=" + password + ", image=" + image + ", points=" + points + ", role=" + role + "]";
+        return "UsersDTO [id=" + id + ", isActive=" + isActive + ", name=" + name + ", surname=" + surname + ", username=" + email + ", password=" + password + ", image=" + image + ", points=" + points + ", role=" + role + "]";
     }
+
+
 }
 

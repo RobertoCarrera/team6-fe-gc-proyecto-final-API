@@ -25,9 +25,9 @@ public class UsersServiceImpl implements IUsersService {
 	}
 
 	@Override
-	public Users userByID(int id) {
+	public Users userByID(String email) {
 
-		return iUsersServiceDAO.findById(id).get();
+		return iUsersServiceDAO.findByEmail(email).get();
 	}
 
 	@Override
@@ -37,9 +37,9 @@ public class UsersServiceImpl implements IUsersService {
 	}
 
 	@Override
-	public void deleteUser(int id) {
+	public void deleteUser(String email) {
 
-		iUsersServiceDAO.deleteById(id);
+		iUsersServiceDAO.deleteByEmail(email);
 	}
 
 }

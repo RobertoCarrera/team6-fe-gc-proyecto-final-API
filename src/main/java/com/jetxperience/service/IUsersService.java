@@ -9,9 +9,9 @@ public interface IUsersService {
 	
 	public Users newUser(Users user);
 	
-	public Users userByID(int id);
+	public Users userByID(String email);
 	
 	public Users updateUser(Users user);
 	
-	public void deleteUser(int id);
+	public void deleteUser(String email);
 }
