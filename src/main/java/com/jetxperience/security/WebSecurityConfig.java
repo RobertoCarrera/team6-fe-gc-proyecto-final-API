@@ -15,9 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import com.jetxperience.jwt.JWTAuthenticationFilter;
-
 
 /**
  * @author Samson Effes
@@ -26,10 +24,30 @@ import com.jetxperience.jwt.JWTAuthenticationFilter;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    private static final String[] SECURED_URLs = {"/users/**"};
+    private static final String[] SECURED_URLs = {
+    		"/api/v1/**",
+    		//"/usuarios/**",
+    		"/alergenos/**",
+    		"/respuestas/**",
+    		"/categorias/**",
+    		"/reclamaciones/**",
+    		"/platos_ingredientes/**",
+    		"/platos_pedidos/**",
+    		"/horas/**",
+    		"/horas_pedidos/**",
+    		"/ingredientes/**",
+    		"/pedidos/**",
+    		"/premios/**",
+    		"/roles/**",
+    		"/usuarios_alergenos/**",
+    		"/usuarios_platos/**",
+    		"/usuarios_ingredientes/**",
+    		"/usuarios_premios/**"
+
+    };
 
     private static final String[] UN_SECURED_URLs = {
-            //"/books/all",
+    		"/login/**",
     		"/platos/**",
     		"/usuarios/**"
     };
@@ -61,7 +79,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(UN_SECURED_URLs).permitAll().and()
                 .authorizeHttpRequests().requestMatchers(SECURED_URLs)
-                .hasAuthority("ADMIN").anyRequest().authenticated()
+                .hasAuthority("Administrador").anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
