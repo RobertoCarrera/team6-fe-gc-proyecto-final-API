@@ -17,6 +17,12 @@ public class DishesServiceImpl implements IDishesService {
 
 		return iDishesDAO.findAll();
 	}
+	
+	@Override
+	public List<Dishes> dishesByCategory(int category){
+		
+		return iDishesDAO.findByCategoryId(category);
+	}
 
 	@Override
 	public Dishes newDish(Dishes dish) {

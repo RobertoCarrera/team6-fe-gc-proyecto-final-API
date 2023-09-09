@@ -7,6 +7,8 @@ public interface IDishesService {
 
 	public List<Dishes> listDishes();
 	
+	public List <Dishes> dishesByCategory(int category);
+	
 	public Dishes newDish(Dishes dish);
 	
 	public Dishes dishByID(int id);

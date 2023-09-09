@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.jetxperience.service.DishesServiceImpl;
 import com.jetxperience.dto.Dishes;
@@ -19,9 +20,14 @@ public class DishesController {
 	DishesServiceImpl dishesServiceImpl;
 	
 	@GetMapping("/dishes")
-	public List<Dishes> listDishes(){
-		
-		return dishesServiceImpl.listDishes(); 
+	public List<Dishes> listDishes(@RequestParam(required = false) Integer category){
+	    if (category != null) {
+	    	
+	        return dishesServiceImpl.dishesByCategory(category);
+	    } else {
+	    	
+	        return dishesServiceImpl.listDishes();
+	    }
 	}
 	
 	@GetMapping("/dishes/{id}")
