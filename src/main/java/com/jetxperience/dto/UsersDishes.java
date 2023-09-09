@@ -27,7 +27,7 @@ public class UsersDishes {
     @JoinColumn(name = "id_dishes")
     private Dishes dishes;
 
-    @Column(name = "isAvailable")
+    @Column(name = "is_available")
     private boolean isAvailable;
 
     // Constructores

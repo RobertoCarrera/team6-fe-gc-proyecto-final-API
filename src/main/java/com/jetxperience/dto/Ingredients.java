@@ -2,6 +2,8 @@ package com.jetxperience.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,9 +26,6 @@ public class Ingredients {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "isActive")
-    private boolean isActive;
-
     @Column(name = "name")
     private String name;
 
@@ -38,6 +37,7 @@ public class Ingredients {
 
     @ManyToOne
     @JoinColumn(name = "allergen")
+    @JsonProperty("allergen")
     private Allergens allergen;
     
     @OneToMany(mappedBy = "idIngredients", fetch = FetchType.LAZY)
@@ -51,9 +51,8 @@ public class Ingredients {
 
     }
 
-    public Ingredients(int id, boolean isActive, String name, String image, int stock, Allergens allergen) {
+    public Ingredients(int id, String name, String image, int stock, Allergens allergen) {
         this.id = id;
-        this.isActive = isActive;
         this.name = name;
         this.image = image;
         this.stock = stock;
@@ -67,14 +66,6 @@ public class Ingredients {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean isActive) {
-        this.isActive = isActive;
     }
 
     public String getName() {
@@ -111,6 +102,6 @@ public class Ingredients {
 
     @Override
     public String toString() {
-        return "IngredientDTO [id=" + id + ", isActive=" + isActive + ", name=" + name + ", image=" + image + ", stock=" + stock + ", allergen=" + allergen + "]";
+        return "IngredientDTO [id=" + id + ", name=" + name + ", image=" + image + ", stock=" + stock + ", allergen=" + allergen + "]";
     }
 }

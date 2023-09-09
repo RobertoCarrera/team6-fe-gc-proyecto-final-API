@@ -18,13 +18,13 @@ public class IngredientsController {
 	@Autowired
 	IngredientsServiceImpl ingredientsServiceImpl;
 	
-	@GetMapping("/ingredientes")
+	@GetMapping("/ingredients")
 	public List<Ingredients> listIngredients(){
 		
 		return ingredientsServiceImpl.listIngredients(); 
 	}
 	
-	@GetMapping("/ingredientes/{id}")
+	@GetMapping("/ingredients/{id}")
 	public Ingredients ingredientById(@PathVariable(name="id") int id) {
 		
 		Ingredients ingredient_byID = new Ingredients();
@@ -36,19 +36,18 @@ public class IngredientsController {
 		return ingredient_byID;
 	}
 	
-	@PostMapping("/ingredientes")
+	@PostMapping("/ingredients")
 	public Ingredients newIngredient(@RequestBody Ingredients ingredient) {
 		
 		return ingredientsServiceImpl.newIngredient(ingredient);
 	}
 	
-	@PutMapping("/ingredientes/{id}")
+	@PutMapping("/ingredients/{id}")
 	public Ingredients updateIngredient(@PathVariable(name="id")int id, @RequestBody Ingredients ingredient) {
 		
 		Ingredients ingredient_selected = new Ingredients();
 		Ingredients ingredient_updated = new Ingredients();
-		
-		ingredient_selected.setActive(ingredient.isActive());
+	
 		ingredient_selected.setName(ingredient.getName());
 		ingredient_selected.setImage(ingredient.getImage());
 		
@@ -59,7 +58,7 @@ public class IngredientsController {
 		return ingredient_updated;
 	}
 	
-	@DeleteMapping("/ingredientes/{id}")
+	@DeleteMapping("/ingredients/{id}")
 	public void deleteIngredient(@PathVariable(name="id") int id) {
 		
 		ingredientsServiceImpl.deleteIngredient(id);

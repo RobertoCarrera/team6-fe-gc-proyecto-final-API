@@ -1,6 +1,5 @@
 package com.jetxperience.dto;
 
-import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,11 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Version;
 
 @Entity
 @Table(name="users_rewards")
-public class UsersRewards implements Serializable {
+public class UsersRewards{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +24,9 @@ public class UsersRewards implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_rewards")
     private Rewards idRewards;
-
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
+    
+    @Column(name="is_available", nullable=false)
+    private boolean isAvailable;
 
     public int getId() {
         return id;
@@ -54,12 +51,14 @@ public class UsersRewards implements Serializable {
     public void setIdRewards(Rewards idRewards) {
         this.idRewards = idRewards;
     }
-
-    public Integer getLockFlag() {
-        return lockFlag;
+    
+    public boolean getIsAvailable() {
+    	
+        return isAvailable;
     }
 
-    public void setLockFlag(Integer lockFlag) {
-        this.lockFlag = lockFlag;
+    public void setIsAvailable(boolean newIsAvailable) {
+    	
+        this.isAvailable = newIsAvailable;
     }
 }

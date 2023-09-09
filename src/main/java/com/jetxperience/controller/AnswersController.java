@@ -18,13 +18,13 @@ public class AnswersController {
 	@Autowired
 	AnswersServiceImpl answersServiceImpl;
 	
-	@GetMapping("/respuestas")
+	@GetMapping("/answers")
 	public List<Answers> listAnswers(){
 		
 		return answersServiceImpl.listAnswers(); 
 	}
 	
-	@GetMapping("/respuestas/{id}")
+	@GetMapping("/answers/{id}")
 	public Answers answerById(@PathVariable(name="id") int id) {
 		
 		Answers answer_byID = new Answers();
@@ -36,13 +36,13 @@ public class AnswersController {
 		return answer_byID;
 	}
 	
-	@PostMapping("/respuestas")
+	@PostMapping("/answers")
 	public Answers newAnswer(@RequestBody Answers answer) {
 		
 		return answersServiceImpl.newAnswer(answer);
 	}
 	 
-	@PutMapping("/respuestas/{id}")
+	@PutMapping("/answers/{id}")
 	public Answers updateAnswer(@PathVariable(name="id")int id, @RequestBody Answers answer) {
 		
 		Answers answer_selected = new Answers();
@@ -58,7 +58,7 @@ public class AnswersController {
 		return answer_updated;
 	}
 	
-	@DeleteMapping("/respuestas/{id}")
+	@DeleteMapping("/answers/{id}")
 	public void deleteAnswer(@PathVariable(name="id") int id) {
 		
 		answersServiceImpl.deleteAnswer(id);

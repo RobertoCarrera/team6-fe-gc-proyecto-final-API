@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.jetxperience.service.UsersDishesServiceImpl;
@@ -18,13 +17,13 @@ public class UsersDishesController {
 	@Autowired
 	UsersDishesServiceImpl usuarios_platosServiceImpl;
 	
-	@GetMapping("/usuarios_platos")
+	@GetMapping("/users_dishes")
 	public List<UsersDishes> listUsersDishes(){
 		
 		return usuarios_platosServiceImpl.listUsersDishes(); 
 	}
 	
-	@GetMapping("/usuarios_platos/{id}")
+	@GetMapping("/users_dishes/{id}")
 	public UsersDishes usersDishesById(@PathVariable(name="id") int id) {
 		
 		UsersDishes usersDishes_byID = new UsersDishes();
@@ -36,13 +35,13 @@ public class UsersDishesController {
 		return usersDishes_byID;
 	}
 	
-	@PostMapping("/usuarios_platos")
+	@PostMapping("/users_dishes")
 	public UsersDishes newUserDish(@RequestBody UsersDishes usersDishes) {
 		
 		return usuarios_platosServiceImpl.newUserDish(usersDishes);
 	}
 	
-	@DeleteMapping("/usuarios_platos/{id}")
+	@DeleteMapping("/users_dishes/{id}")
 	public void deleteUserDish(@PathVariable(name="id") int id) {
 		
 		usuarios_platosServiceImpl.deleteUserDish(id);

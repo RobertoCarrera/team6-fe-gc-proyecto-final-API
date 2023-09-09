@@ -18,13 +18,13 @@ public class AllergensController {
 	@Autowired
 	AllergensServiceImpl allergensServiceImpl;
 	
-	@GetMapping("/alergenos")
+	@GetMapping("/allergens")
 	public List<Allergens> listAllergens(){
 		
 		return allergensServiceImpl.listAllergens(); 
 	}
 	
-	@GetMapping("/alergenos/{id}")
+	@GetMapping("/allergens/{id}")
 	public Allergens allergenById(@PathVariable(name="id") int id) {
 		
 		Allergens allergen_byID = new Allergens();
@@ -36,19 +36,18 @@ public class AllergensController {
 		return allergen_byID;
 	}
 	
-	@PostMapping("/alergenos")
+	@PostMapping("/allergens")
 	public Allergens newAllergen(@RequestBody Allergens allergen) {
 		
 		return allergensServiceImpl.newAllergen(allergen);
 	}
 	
-	@PutMapping("/alergenos/{id}")
+	@PutMapping("/allergens/{id}")
 	public Allergens updateAllergen(@PathVariable(name="id")int id, @RequestBody Allergens allergen) {
 		
 		Allergens allergen_selected = new Allergens();
 		Allergens allergen_updated = new Allergens();
 		
-		allergen_selected.setIsActive(allergen.getIsActive());
 		allergen_selected.setName(allergen.getName());
 		allergen_selected.setImage(allergen.getImage());
 		
@@ -59,7 +58,7 @@ public class AllergensController {
 		return allergen_updated;
 	}
 	
-	@DeleteMapping("/alergenos/{id}")
+	@DeleteMapping("/allergens/{id}")
 	public void deleteAllergen(@PathVariable(name="id") int id) {
 		
 		allergensServiceImpl.deleteAllergen(id);

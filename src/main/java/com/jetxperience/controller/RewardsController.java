@@ -18,13 +18,13 @@ public class RewardsController {
 	@Autowired
 	RewardsServiceImpl rewardsServiceImpl;
 	
-	@GetMapping("/premios")
+	@GetMapping("/rewards")
 	public List<Rewards> listRewards(){
 		
 		return rewardsServiceImpl.listRewards(); 
 	}
 	
-	@GetMapping("/premios/{id}")
+	@GetMapping("/rewards/{id}")
 	public Rewards rewardById(@PathVariable(name="id") int id) {
 		
 		Rewards reward_byID = new Rewards();
@@ -36,13 +36,13 @@ public class RewardsController {
 		return reward_byID;
 	}
 	
-	@PostMapping("/premios")
+	@PostMapping("/rewards")
 	public Rewards newReward(@RequestBody Rewards reward) {
 		
 		return rewardsServiceImpl.newReward(reward);
 	}
 	
-	@PutMapping("/premios/{id}")
+	@PutMapping("/rewards/{id}")
 	public Rewards updateReward(@PathVariable(name="id")int id, @RequestBody Rewards reward) {
 		
 		Rewards reward_selected = new Rewards();
@@ -63,7 +63,7 @@ public class RewardsController {
 		return reward_updated;
 	}
 	
-	@DeleteMapping("/premios/{id}")
+	@DeleteMapping("/rewards/{id}")
 	public void deleteReward(@PathVariable(name="id") int id) {
 		
 		rewardsServiceImpl.deleteReward(id);

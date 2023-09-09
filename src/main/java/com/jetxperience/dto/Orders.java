@@ -3,6 +3,8 @@
 package com.jetxperience.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,11 +36,14 @@ public class Orders {
     @Column(name = "date_ordered")
     private String dateOrdered;
 
-    @Column(name = "time_pick_up")
-    private String timePickUp;
+    @ManyToOne
+    @JoinColumn(name = "time_pick_up")
+    @JsonProperty("time_pick_up")
+    private Hours timePickUp;
 
     @ManyToOne
     @JoinColumn(name = "user")
+    @JsonProperty("user")
     private Users user;
 
     // Constructores
@@ -46,7 +51,7 @@ public class Orders {
 
     }
 
-    public Orders(int id, float total, Float discount, String status, String dateOrdered, String timePickUp, Users user) {
+    public Orders(int id, float total, Float discount, String status, String dateOrdered, Hours timePickUp, Users user) {
         this.id = id;
         this.total = total;
         this.discount = discount;
@@ -97,11 +102,11 @@ public class Orders {
         this.dateOrdered = dateOrdered;
     }
 
-    public String getTimePickUp() {
+    public Hours getTimePickUp() {
         return timePickUp;
     }
 
-    public void setTimePickUp(String timePickUp) {
+    public void setTimePickUp(Hours timePickUp) {
         this.timePickUp = timePickUp;
     }
 

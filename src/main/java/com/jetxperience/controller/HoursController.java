@@ -18,13 +18,13 @@ public class HoursController {
 	@Autowired
 	HoursServiceImpl hoursServiceImpl;
 	
-	@GetMapping("/horas")
+	@GetMapping("/hours")
 	public List<Hours> listHours(){
 		
 		return hoursServiceImpl.listHours(); 
 	}
 	
-	@GetMapping("/horas/{id}")
+	@GetMapping("/hours/{id}")
 	public Hours hourById(@PathVariable(name="id") int id) {
 		
 		Hours hour_byID = new Hours();
@@ -36,13 +36,13 @@ public class HoursController {
 		return hour_byID;
 	}
 	
-	@PostMapping("/horas")
+	@PostMapping("/hours")
 	public Hours newHour(@RequestBody Hours hour) {
 		
 		return hoursServiceImpl.newHour(hour);
 	}
 	
-	@PutMapping("/horas/{id}")
+	@PutMapping("/hours/{id}")
 	public Hours updateHour(@PathVariable(name="id")int id, @RequestBody Hours hour) {
 		
 		Hours hour_selected = new Hours();
@@ -58,7 +58,7 @@ public class HoursController {
 		return hour_updated;
 	}
 	
-	@DeleteMapping("/horas/{id}")
+	@DeleteMapping("/hours/{id}")
 	public void deleteHour(@PathVariable(name="id") int id) {
 		
 		hoursServiceImpl.deleteHour(id);

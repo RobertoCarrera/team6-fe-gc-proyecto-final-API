@@ -2,11 +2,9 @@
 
 package com.jetxperience.dto;
 
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -16,10 +14,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Version;
 
 @Entity(name="complaints")
-public class Complaints implements Serializable {
+public class Complaints{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,6 +32,7 @@ public class Complaints implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "sender")
+    @JsonProperty("sender")
     private Users sender;
 
     public Complaints() {

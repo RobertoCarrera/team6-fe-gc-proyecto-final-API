@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.jetxperience.service.UsersRewardsServiceImpl;
@@ -18,13 +17,13 @@ public class UsersRewardsController {
 	@Autowired
 	UsersRewardsServiceImpl usuarios_premiosServiceImpl;
 	
-	@GetMapping("/usuarios_premios")
+	@GetMapping("/users_rewards")
 	public List<UsersRewards> listUsersRewards(){
 		
 		return usuarios_premiosServiceImpl.listUsersRewards(); 
 	}
 	
-	@GetMapping("/usuarios_premios/{id}")
+	@GetMapping("/users_rewards/{id}")
 	public UsersRewards usersRewardsById(@PathVariable(name="id") int id) {
 		
 		UsersRewards usersRewards_byID = new UsersRewards();
@@ -36,13 +35,13 @@ public class UsersRewardsController {
 		return usersRewards_byID;
 	}
 	
-	@PostMapping("/usuarios_premios")
+	@PostMapping("/users_rewards")
 	public UsersRewards newUserReward(@RequestBody UsersRewards usersRewards) {
 		
 		return usuarios_premiosServiceImpl.newUserReward(usersRewards);
 	}
 	
-	@DeleteMapping("/usuarios_premios/{id}")
+	@DeleteMapping("/users_rewards/{id}")
 	public void deleteUserReward(@PathVariable(name="id") int id) {
 		
 		usuarios_premiosServiceImpl.deleteUserReward(id);

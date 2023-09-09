@@ -18,13 +18,13 @@ public class DishesIngredientsController {
 	@Autowired
 	DishesIngredientsServiceImpl dishesIngredientsServiceImpl;
 	
-	@GetMapping("/platos_ingredientes")
+	@GetMapping("/dishes_ingredients")
 	public List<DishesIngredients> listDishesIngredients(){
 		
 		return dishesIngredientsServiceImpl.listDishesIngredients(); 
 	}
 	
-	@GetMapping("/platos_ingredientes/{id}")
+	@GetMapping("/dishes_ingredients/{id}")
 	public DishesIngredients dishIngredientById(@PathVariable(name="id") int id) {
 		
 		DishesIngredients dishIngredient_byID = new DishesIngredients();
@@ -36,13 +36,13 @@ public class DishesIngredientsController {
 		return dishIngredient_byID;
 	}
 	
-	@PostMapping("/platos_ingredientes")
+	@PostMapping("/dishes_ingredients")
 	public DishesIngredients newDishIngredient(@RequestBody DishesIngredients dishIngredient) {
 		
 		return dishesIngredientsServiceImpl.newDishIngredient(dishIngredient);
 	}
 	
-	@PutMapping("/platos_ingredientes/{id}")
+	@PutMapping("/dishes_ingredients/{id}")
 	public DishesIngredients updateDishIngredient(@PathVariable(name="id")int id, @RequestBody DishesIngredients dishIngredient) {
 		
 		DishesIngredients dishIngredient_selected = new DishesIngredients();
@@ -58,7 +58,7 @@ public class DishesIngredientsController {
 		return dishIngredient_updated;
 	}
 	
-	@DeleteMapping("/platos_ingredientes/{id}")
+	@DeleteMapping("/dishes_ingredients/{id}")
 	public void deleteDishIngredient(@PathVariable(name="id") int id) {
 		
 		dishesIngredientsServiceImpl.deleteDishIngredient(id);

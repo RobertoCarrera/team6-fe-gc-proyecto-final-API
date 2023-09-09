@@ -3,15 +3,11 @@
 package com.jetxperience.dto;
 
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,18 +26,19 @@ public class Hours {
     @Column(name = "isAvailable")
     private boolean isAvailable;
     
-	@OneToMany(mappedBy = "idHours", fetch = FetchType.LAZY)
-	private List<HoursOrders> hoursOrders;
+    @Column(name = "orders_counter")
+    private int ordersCounter;
 
     // Constructores
     public Hours() {
 
     }
 
-    public Hours(int id, String hour, boolean isAvailable) {
+    public Hours(int id, String hour, boolean isAvailable, int newOrdersCounter) {
         this.id = id;
         this.hour = hour;
         this.isAvailable = isAvailable;
+        this.ordersCounter = newOrdersCounter;
     }
 
     // Métodos
@@ -68,9 +65,17 @@ public class Hours {
     public void setAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
+    
+    public int getOrdersCounter() {
+        return id;
+    }
 
+    public void setOrdersCounter(int id) {
+        this.id = id;
+    }
+    
     @Override
     public String toString() {
-        return "HoursDTO [id=" + id + ", hour=" + hour + ", isAvailable=" + isAvailable + "]";
+        return "HoursDTO [id=" + id + ", hour=" + hour + ", isAvailable=" + isAvailable + "order counter="+ordersCounter+"]";
     }
 }

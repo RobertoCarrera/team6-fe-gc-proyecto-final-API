@@ -2,10 +2,7 @@
 
 package com.jetxperience.dto;
 
-import java.io.Serializable;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,10 +10,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Version;
 
 @Entity(name="categories")
-public class Categories implements Serializable {
+public class Categories {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,7 +27,6 @@ public class Categories implements Serializable {
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Rewards> rewards;
 
-    /** Default constructor. */
     public Categories() {
         super();
     }

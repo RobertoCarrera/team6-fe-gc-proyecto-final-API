@@ -18,13 +18,13 @@ public class OrdersController {
 	@Autowired
 	OrdersServiceImpl ordersServiceImpl;
 	
-	@GetMapping("/pedidos")
+	@GetMapping("/orders")
 	public List<Orders> listOrders(){
 		
 		return ordersServiceImpl.listOrders(); 
 	}
 	
-	@GetMapping("/pedidos/{id}")
+	@GetMapping("/orders/{id}")
 	public Orders orderById(@PathVariable(name="id") int id) {
 		
 		Orders order_byID = new Orders();
@@ -36,7 +36,7 @@ public class OrdersController {
 		return order_byID;
 	}
 	
-	@PostMapping("/pedidos")
+	@PostMapping("/orders")
 	public Orders newOrder(@RequestBody Orders order) {
 		
 		return ordersServiceImpl.newOrder(order);
@@ -61,7 +61,7 @@ public class OrdersController {
 		return order_updated;
 	}
 	
-	@DeleteMapping("/pedidos/{id}")
+	@DeleteMapping("/orders/{id}")
 	public void deleteOrder(@PathVariable(name="id") int id) {
 		
 		ordersServiceImpl.deleteOrder(id);

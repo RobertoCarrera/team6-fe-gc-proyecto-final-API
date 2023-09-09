@@ -17,13 +17,13 @@ public class DishesOrdersController {
 	@Autowired
 	DishesOrdersServiceImpl dishesOrdersServiceImpl;
 	
-	@GetMapping("/platos_pedidos")
+	@GetMapping("/dishes_orders")
 	public List<DishesOrders> listDishesOrders(){
 		
 		return dishesOrdersServiceImpl.listDishesOrders(); 
 	}
 	
-	@GetMapping("/platos_pedidos/{id}")
+	@GetMapping("/dishes_orders/{id}")
 	public DishesOrders dishOrderById(@PathVariable(name="id") int id) {
 		
 		DishesOrders dishOrder_byID = new DishesOrders();
@@ -35,13 +35,13 @@ public class DishesOrdersController {
 		return dishOrder_byID;
 	}
 	
-	@PostMapping("/platos_pedidos")
+	@PostMapping("/dishes_orders")
 	public DishesOrders newDishOrder(@RequestBody DishesOrders dishOrder) {
 		
 		return dishesOrdersServiceImpl.newDishOrder(dishOrder);
 	}
 	
-	@DeleteMapping("/platos_pedidos/{id}")
+	@DeleteMapping("/dishes_orders/{id}")
 	public void deleteDishOrder(@PathVariable(name="id") int id) {
 		
 		dishesOrdersServiceImpl.deleteDishOrder(id);

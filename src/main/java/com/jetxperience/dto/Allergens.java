@@ -2,10 +2,7 @@
 
 package com.jetxperience.dto;
 
-import java.io.Serializable;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,18 +10,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.Version;
 
 @Entity(name="allergens")
-public class Allergens implements Serializable {
+public class Allergens {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(unique=true, nullable=false)
     private short id;
-    @Column(nullable=false)
-    private boolean isActive;
     @Column(nullable=false, length=15)
     private String name;
     @Column(nullable=false, length=150)
@@ -43,14 +36,6 @@ public class Allergens implements Serializable {
 
     public void setId(short aId) {
         id = aId;
-    }
-
-    public boolean getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(boolean aIsActive) {
-        isActive = aIsActive;
     }
 
     public String getName() {

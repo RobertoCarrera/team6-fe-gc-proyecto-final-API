@@ -5,6 +5,8 @@ package com.jetxperience.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,7 +28,7 @@ public class Users {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "isActive")
+    @Column(name = "is_active")
     private boolean isActive;
 
     @Column(name = "name")
@@ -35,8 +37,8 @@ public class Users {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "password")
     private String password;
@@ -49,6 +51,7 @@ public class Users {
 
     @ManyToOne
     @JoinColumn(name = "role")
+    @JsonProperty("role")
     private Roles role;
     
     @OneToMany(mappedBy = "idUsers", fetch = FetchType.LAZY)
@@ -59,12 +62,12 @@ public class Users {
 
     }
 
-    public Users(int id, boolean isActive, String name, String surname, String username, String password, String image, int points, Roles role) {
+    public Users(int id, boolean isActive, String name, String surname, String email, String password, String image, int points, Roles role) {
         this.id = id;
         this.isActive = isActive;
         this.name = name;
         this.surname = surname;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.image = image;
         this.points = points;
@@ -73,80 +76,99 @@ public class Users {
 
     // Métodos
     public int getId() {
+    	
         return id;
     }
 
     public void setId(int id) {
+    	
         this.id = id;
     }
 
     public boolean isActive() {
+    	
         return isActive;
     }
 
     public void setActive(boolean isActive) {
+    	
         this.isActive = isActive;
     }
 
     public String getName() {
+    	
         return name;
     }
 
     public void setName(String name) {
+    	
         this.name = name;
     }
 
     public String getSurname() {
+    	
         return surname;
     }
 
     public void setSurname(String surname) {
+    	
         this.surname = surname;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+    	
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String newEmail) {
+    	
+        this.email = newEmail;
     }
 
     public String getPassword() {
+    	
         return password;
     }
 
     public void setPassword(String password) {
+    	
         this.password = password;
     }
 
     public String getImage() {
+    	
         return image;
     }
 
     public void setImage(String image) {
+    	
         this.image = image;
     }
 
     public int getPoints() {
+    	
         return points;
     }
 
     public void setPoints(int points) {
+    	
         this.points = points;
     }
 
     public Roles getRole() {
+    	
         return role;
     }
 
     public void setRole(Roles role) {
+    	
         this.role = role;
     }
 
     @Override
     public String toString() {
-        return "UsersDTO [id=" + id + ", isActive=" + isActive + ", name=" + name + ", surname=" + surname + ", username=" + username + ", password=" + password + ", image=" + image + ", points=" + points + ", role=" + role + "]";
+    	
+        return "UsersDTO [id=" + id + ", isActive=" + isActive + ", name=" + name + ", surname=" + surname + ", email=" + email + ", password=" + password + ", image=" + image + ", points=" + points + ", role=" + role + "]";
     }
 }
 

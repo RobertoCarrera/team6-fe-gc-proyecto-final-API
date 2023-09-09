@@ -18,13 +18,13 @@ public class DishesController {
 	@Autowired
 	DishesServiceImpl dishesServiceImpl;
 	
-	@GetMapping("/platos")
+	@GetMapping("/dishes")
 	public List<Dishes> listDishes(){
 		
 		return dishesServiceImpl.listDishes(); 
 	}
 	
-	@GetMapping("/platos/{id}")
+	@GetMapping("/dishes/{id}")
 	public Dishes dishById(@PathVariable(name="id") int id) {
 		
 		Dishes dish_byID = new Dishes();
@@ -36,13 +36,13 @@ public class DishesController {
 		return dish_byID;
 	}
 	
-	@PostMapping("/platos")
+	@PostMapping("/dishes")
 	public Dishes newDish(@RequestBody Dishes dish) {
 		
 		return dishesServiceImpl.newDish(dish);
 	}
 	
-	@PutMapping("/platos/{id}")
+	@PutMapping("/dishes/{id}")
 	public Dishes updateDish(@PathVariable(name="id")int id, @RequestBody Dishes dish) {
 		
 		Dishes dish_selected = new Dishes();
@@ -65,7 +65,7 @@ public class DishesController {
 		return dish_updated;
 	}
 	
-	@DeleteMapping("/platos/{id}")
+	@DeleteMapping("/dishes/{id}")
 	public void deleteDish(@PathVariable(name="id") int id) {
 		
 		dishesServiceImpl.deleteDish(id);

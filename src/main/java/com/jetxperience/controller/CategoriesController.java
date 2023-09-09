@@ -18,13 +18,13 @@ public class CategoriesController {
 	@Autowired
 	CategoriesServiceImpl categoriessServiceImpl;
 	
-	@GetMapping("/categorias")
+	@GetMapping("/categories")
 	public List<Categories> listCategories(){
 		
 		return categoriessServiceImpl.listCategories(); 
 	}
 	
-	@GetMapping("/categorias/{id}")
+	@GetMapping("/categories/{id}")
 	public Categories categoryById(@PathVariable(name="id") int id) {
 		
 		Categories category_byID = new Categories();
@@ -36,13 +36,13 @@ public class CategoriesController {
 		return category_byID;
 	}
 	
-	@PostMapping("/categorias")
+	@PostMapping("/categories")
 	public Categories newCategory(@RequestBody Categories category) {
 		
 		return categoriessServiceImpl.newCategory(category);
 	}
 	 
-	@PutMapping("/categorias/{id}")
+	@PutMapping("/categories/{id}")
 	public Categories updateCategory(@PathVariable(name="id")int id, @RequestBody Categories category) {
 		
 		Categories category_selected = new Categories();
@@ -57,7 +57,7 @@ public class CategoriesController {
 		return category_updated;
 	}
 	
-	@DeleteMapping("/categorias/{id}")
+	@DeleteMapping("/categories/{id}")
 	public void deleteCategory(@PathVariable(name="id") int id) {
 		
 		categoriessServiceImpl.deleteCategory(id);

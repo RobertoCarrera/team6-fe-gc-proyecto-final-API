@@ -18,13 +18,13 @@ public class UsersController {
 	@Autowired
 	UsersServiceImpl usersServiceImpl;
 	
-	@GetMapping("/usuarios")
+	@GetMapping("/users")
 	public List<Users> listUsers(){
 		
 		return usersServiceImpl.listUsers(); 
 	}
 	
-	@GetMapping("/usuarios/{id}")
+	@GetMapping("/users/{id}")
 	public Users userById(@PathVariable(name="id") int id) {
 		
 		Users user_byID = new Users();
@@ -36,13 +36,13 @@ public class UsersController {
 		return user_byID;
 	}
 	
-	@PostMapping("/usuarios")
+	@PostMapping("/users")
 	public Users newUser(@RequestBody Users user) {
 		
 		return usersServiceImpl.newUser(user);
 	}
 	
-	@PutMapping("/usuarios/{id}")
+	@PutMapping("/users/{id}")
 	public Users updateUser(@PathVariable(name="id")int id, @RequestBody Users user) {
 		
 		Users user_selected = new Users();
@@ -51,7 +51,7 @@ public class UsersController {
 		user_selected.setActive(user.isActive());
 		user_selected.setName(user.getName());
 		user_selected.setSurname(user.getSurname());
-		user_selected.setUsername(user.getUsername());
+		user_selected.setEmail(user.getEmail());
 		user_selected.setPassword(user.getPassword());
 		user_selected.setRole(user.getRole());
 		user_selected.setImage(user.getImage());
@@ -63,7 +63,7 @@ public class UsersController {
 		return user_updated;
 	}
 	
-	@DeleteMapping("/usuarios/{id}")
+	@DeleteMapping("/users/{id}")
 	public void deleteUser(@PathVariable(name="id") int id) {
 		
 		usersServiceImpl.deleteUser(id);

@@ -1,9 +1,5 @@
 package com.jetxperience.dto;
 
-import java.io.Serializable;
-
-import org.apache.catalina.User;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,19 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Version;
 
 @Entity
 @Table(name="dishes_ingredients")
-public class DishesIngredients implements Serializable {
+public class DishesIngredients {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
 
     @Column(nullable=false)
     private double quantity;
@@ -65,14 +56,6 @@ public class DishesIngredients implements Serializable {
     public void setIdIngredients(Ingredients idIngredients) {
     	
         this.idIngredients = idIngredients;
-    }
-
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    public void setLockFlag(Integer lockFlag) {
-        this.lockFlag = lockFlag;
     }
 
     public double getQuantity() {

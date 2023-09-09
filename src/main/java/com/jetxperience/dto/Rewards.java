@@ -2,6 +2,8 @@
 
 package com.jetxperience.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +43,7 @@ public class Rewards {
 
     @ManyToOne
     @JoinColumn(name = "category")
+    @JsonProperty("category")
     private Categories category;
 
     // Constructores

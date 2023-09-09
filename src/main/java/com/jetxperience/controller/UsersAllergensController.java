@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.jetxperience.service.UsersAllergensServiceImpl;
@@ -18,13 +17,13 @@ public class UsersAllergensController {
 	@Autowired
 	UsersAllergensServiceImpl usuarios_alergenosServiceImpl;
 	
-	@GetMapping("/usuarios_alergenos")
+	@GetMapping("/users_allergens")
 	public List<UsersAllergens> listUsersAllergens(){
 		
 		return usuarios_alergenosServiceImpl.listUsersAllergens(); 
 	}
 	
-	@GetMapping("/usuarios_alergenos/{id}")
+	@GetMapping("/users_allergens/{id}")
 	public UsersAllergens usersAllergensById(@PathVariable(name="id") int id) {
 		
 		UsersAllergens usersAllergens_byID = new UsersAllergens();
@@ -36,13 +35,13 @@ public class UsersAllergensController {
 		return usersAllergens_byID;
 	}
 	
-	@PostMapping("/usuarios_alergenos")
+	@PostMapping("/users_allergens")
 	public UsersAllergens newUserAllergen(@RequestBody UsersAllergens usersAllergens) {
 		
 		return usuarios_alergenosServiceImpl.newUserAllergen(usersAllergens);
 	}
 	
-	@DeleteMapping("/usuarios_alergenos/{id}")
+	@DeleteMapping("/users_allergens/{id}")
 	public void deleteUserAllergen(@PathVariable(name="id") int id) {
 		
 		usuarios_alergenosServiceImpl.deleteUserAllergen(id);

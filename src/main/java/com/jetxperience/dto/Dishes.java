@@ -1,12 +1,7 @@
 
 package com.jetxperience.dto;
 
-import java.io.Serializable;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.catalina.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,10 +14,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Version;
 
 @Entity(name="dishes")
-public class Dishes implements Serializable {
+public class Dishes{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -64,7 +58,7 @@ public class Dishes implements Serializable {
     }
     
     public Dishes(boolean isActive, String name, String image, double cost, String description,
-    		boolean isRommended, boolean isSuggested, boolean isHighlighted, boolean isAvailable, int stock) {
+    		boolean isRecommended, boolean isSuggested, boolean isHighlighted, boolean isAvailable, int stock) {
     	
     	this.isActive = isActive;
     	this.name = name;
@@ -157,7 +151,7 @@ public class Dishes implements Serializable {
 
     public void setIsAvailable(boolean isAvailable) {
     	
-    	isAvailable = isAvailable;
+    	this.isAvailable = isAvailable;
     }
 
     public int getStock() {
