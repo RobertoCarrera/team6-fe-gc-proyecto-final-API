@@ -139,6 +139,13 @@ public class Users {
     public Roles getRole() {
         return role;
     }
+    
+    public String getRoleName() {
+        if (role != null) {
+            return role.getName();
+        }
+        return null; // O cualquier valor predeterminado que desees en caso de que "role" sea nulo
+    }
 
     public void setRole(Roles role) {
         this.role = role;

@@ -41,5 +41,14 @@ public class UsersServiceImpl implements IUsersService {
 
 		iUsersServiceDAO.deleteByEmail(email);
 	}
+	
+    @Override
+    public String getRoleNameByEmail(String email) {
+        Users user = iUsersServiceDAO.findByEmail(email).orElse(null); // Encuentra al usuario por su correo electrónico
+        if (user != null && user.getRole() != null) {
+            return user.getRole().getName(); // Obtiene el nombre del rol a través de la relación
+        }
+        return null; // Devuelve null si el usuario o el rol no existen
+    }
 
 }

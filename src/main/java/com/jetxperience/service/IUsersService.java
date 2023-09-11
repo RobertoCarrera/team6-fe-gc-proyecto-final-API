@@ -7,6 +7,8 @@ public interface IUsersService {
 
 	public List<Users> listUsers();
 	
+	public String getRoleNameByEmail(String email);
+
 	public Users newUser(Users user);
 	
 	public Users userByID(String email);
@@ -14,4 +16,5 @@ public interface IUsersService {
 	public Users updateUser(Users user);
 	
 	public void deleteUser(String email);
+	
 }
