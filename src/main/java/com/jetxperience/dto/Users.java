@@ -62,12 +62,12 @@ public class Users {
 
     }
 
-    public Users(int id, boolean isActive, String name, String surname, String email, String password, String image, int points, Roles role) {
+    public Users(int id, boolean isActive, String name, String surname, String username, String password, String image, int points, Roles role) {
         this.id = id;
         this.isActive = isActive;
         this.name = name;
         this.surname = surname;
-        this.email = email;
+        this.email = username;
         this.password = password;
         this.image = image;
         this.points = points;
@@ -116,13 +116,11 @@ public class Users {
     }
 
     public String getEmail() {
-    	
         return email;
     }
 
-    public void setEmail(String newEmail) {
-    	
-        this.email = newEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -159,6 +157,13 @@ public class Users {
     	
         return role;
     }
+    
+    public String getRoleName() {
+        if (role != null) {
+            return role.getName();
+        }
+        return null; // O cualquier valor predeterminado que desees en caso de que "role" sea nulo
+    }
 
     public void setRole(Roles role) {
     	
@@ -167,8 +172,9 @@ public class Users {
 
     @Override
     public String toString() {
-    	
-        return "UsersDTO [id=" + id + ", isActive=" + isActive + ", name=" + name + ", surname=" + surname + ", email=" + email + ", password=" + password + ", image=" + image + ", points=" + points + ", role=" + role + "]";
+        return "UsersDTO [id=" + id + ", isActive=" + isActive + ", name=" + name + ", surname=" + surname + ", username=" + email + ", password=" + password + ", image=" + image + ", points=" + points + ", role=" + role + "]";
     }
+
+
 }
 

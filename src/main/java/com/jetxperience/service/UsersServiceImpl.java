@@ -25,9 +25,9 @@ public class UsersServiceImpl implements IUsersService {
 	}
 
 	@Override
-	public Users userByID(int id) {
+	public Users userByID(String email) {
 
-		return iUsersServiceDAO.findById(id).get();
+		return iUsersServiceDAO.findByEmail(email).get();
 	}
 
 	@Override
@@ -37,9 +37,18 @@ public class UsersServiceImpl implements IUsersService {
 	}
 
 	@Override
-	public void deleteUser(int id) {
+	public void deleteUser(String email) {
 
-		iUsersServiceDAO.deleteById(id);
+		iUsersServiceDAO.deleteByEmail(email);
 	}
+	
+    @Override
+    public String getRoleNameByEmail(String email) {
+        Users user = iUsersServiceDAO.findByEmail(email).orElse(null); // Encuentra al usuario por su correo electrónico
+        if (user != null && user.getRole() != null) {
+            return user.getRole().getName(); // Obtiene el nombre del rol a través de la relación
+        }
+        return null; // Devuelve null si el usuario o el rol no existen
+    }
 
 }

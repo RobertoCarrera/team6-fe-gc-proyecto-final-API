@@ -24,12 +24,12 @@ public class UsersController {
 		return usersServiceImpl.listUsers(); 
 	}
 	
-	@GetMapping("/users/{id}")
-	public Users userById(@PathVariable(name="id") int id) {
+	@GetMapping("/usuarios/{id}")
+	public Users userById(@PathVariable(name="id") String email) {
 		
 		Users user_byID = new Users();
 		
-		user_byID = usersServiceImpl.userByID(id);
+		user_byID = usersServiceImpl.userByID(email);
 		
 		System.out.println("Dish byID: "+user_byID);
 		
@@ -63,9 +63,9 @@ public class UsersController {
 		return user_updated;
 	}
 	
-	@DeleteMapping("/users/{id}")
-	public void deleteUser(@PathVariable(name="id") int id) {
+	@DeleteMapping("/usuarios/{id}")
+	public void deleteUser(@PathVariable(name="id") String email) {
 		
-		usersServiceImpl.deleteUser(id);
+		usersServiceImpl.deleteUser(email);
 	}
 }
