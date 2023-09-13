@@ -3,6 +3,9 @@ package com.jetxperience.jwt;
 
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,40 +27,29 @@ import org.json.JSONObject;
  * @author Samson Effes
  */
 
-
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/login")
 public class JWTController {
-    private final JWTService jwtService;
-    private final AuthenticationManager authenticationManager;
-    private final IUsersService usersService; // Inyecta el servicio
 
-    @PostMapping
-    public Object getTokenForAuthenticatedUser(@RequestBody JWTAuthenticationRequest authRequest) {
-        Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword()));
-        if (authentication.isAuthenticated()) {
-            String token = jwtService.generateToken(authRequest.getUserName());
-
-            // Accede al nombre del rol utilizando el servicio IUsersService
-            String roleName = usersService.getRoleNameByEmail(authRequest.getUserName());
-
-            // Obtén el ID del usuario utilizando el servicio IUsersService
-            Users user = usersService.userByID(authRequest.getUserName());
-            Integer userId = (user != null) ? user.getId() : null;
-
-            // Crear un objeto de respuesta que contiene el token, el nombre de usuario, el nombre del rol y el ID del usuario
-            Map<String, Object> response = new HashMap<>();
-            response.put("token", token);
-            response.put("username", authRequest.getUserName());
-            response.put("roleName", roleName);
-            response.put("userId", userId); // Agrega el ID del usuario al mapa
-
-            return response;
-        } else {
-            throw new UserNotFoundException("Invalid user credentials");
-        }
-    }
+	@Autowired
+	JWTService jwtService;
+	
+	@Autowired
+	AuthenticationManager authenticationManager;
+	
+	@PostMapping
+	public Object getTokenForAuthenticatedUser(@RequestBody JWTAuthenticationRequest authRequest){
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword()));
+		
+		if (authentication.isAuthenticated()){
+			String token =  jwtService.generateToken(authRequest.getUserName());
+			JSONObject jsonObject = new JSONObject("{\"token\": \"" + token + "\"}");
+			jsonObject.put("token",token );
+			return jsonObject.toMap();//devuelve token por body
+		}
+		else {
+			throw new UserNotFoundException("Usuario no encontrado.", HttpStatus.NOT_FOUND.value());
+		}
+	}
 }
-

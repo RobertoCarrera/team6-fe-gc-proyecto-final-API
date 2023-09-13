@@ -1,6 +1,8 @@
 package com.jetxperience.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,7 @@ public class UsersController {
 		return usersServiceImpl.listUsers(); 
 	}
 	
-	@GetMapping("/usuarios/{id}")
+	@GetMapping("/users/{id}")
 	public Users userById(@PathVariable(name="id") String email) {
 		
 		Users user_byID = new Users();
@@ -34,6 +36,14 @@ public class UsersController {
 		System.out.println("Dish byID: "+user_byID);
 		
 		return user_byID;
+	}
+	
+	
+	// Buscar usuario por email
+	@GetMapping("/users/email/{email}")
+	public Optional<Users> getUserByEmail(@PathVariable(name = "email") String email) {
+
+		return usersServiceImpl.getUserByEmail(email);
 	}
 	
 	@PostMapping("/users")
@@ -63,7 +73,7 @@ public class UsersController {
 		return user_updated;
 	}
 	
-	@DeleteMapping("/usuarios/{id}")
+	@DeleteMapping("/users/{id}")
 	public void deleteUser(@PathVariable(name="id") String email) {
 		
 		usersServiceImpl.deleteUser(email);

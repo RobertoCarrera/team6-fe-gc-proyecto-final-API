@@ -49,7 +49,7 @@ public class WebSecurityConfig {
     private static final String[] UN_SECURED_URLs = {
     		"/login/**",
     		"/platos/**",
-    		"/usuarios/**"
+    		"/users/**"
     };
 
     @Autowired
