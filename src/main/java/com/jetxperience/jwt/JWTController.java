@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jetxperience.dto.Users;
 import com.jetxperience.exception.UserNotFoundException;
 import com.jetxperience.service.IUsersService;
 
@@ -42,11 +43,16 @@ public class JWTController {
             // Accede al nombre del rol utilizando el servicio IUsersService
             String roleName = usersService.getRoleNameByEmail(authRequest.getUserName());
 
-            // Crear un objeto de respuesta que contiene el token, el nombre de usuario y el nombre del rol
-            Map<String, String> response = new HashMap<>();
+            // Obtén el ID del usuario utilizando el servicio IUsersService
+            Users user = usersService.userByID(authRequest.getUserName());
+            Integer userId = (user != null) ? user.getId() : null;
+
+            // Crear un objeto de respuesta que contiene el token, el nombre de usuario, el nombre del rol y el ID del usuario
+            Map<String, Object> response = new HashMap<>();
             response.put("token", token);
             response.put("username", authRequest.getUserName());
-            response.put("roleName", roleName); // Agrega el nombre del rol al mapa
+            response.put("roleName", roleName);
+            response.put("userId", userId); // Agrega el ID del usuario al mapa
 
             return response;
         } else {
@@ -54,3 +60,4 @@ public class JWTController {
         }
     }
 }
+
