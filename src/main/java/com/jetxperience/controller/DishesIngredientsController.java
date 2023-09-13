@@ -1,5 +1,6 @@
 package com.jetxperience.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.jetxperience.service.DishesIngredientsServiceImpl;
+import com.jetxperience.dto.Allergens;
 import com.jetxperience.dto.DishesIngredients;
+import com.jetxperience.dto.Ingredients;
 
 @RestController
 public class DishesIngredientsController {
@@ -34,6 +37,36 @@ public class DishesIngredientsController {
 		System.out.println("Dish byID: "+dishIngredient_byID);
 		
 		return dishIngredient_byID;
+	}
+	
+	@GetMapping("/dishes/{idDish}/ingredients")
+	public List<Ingredients> getIngredientsByDish(@PathVariable(name="idDish") int idDish) {
+		
+	    List<Ingredients> ingredients = new ArrayList<>();
+	    List<DishesIngredients> dishesIngredients = dishesIngredientsServiceImpl.findAllIngredientsByDish(idDish);
+	    
+	    for (DishesIngredients dishIngredient : dishesIngredients) {
+	    	
+	        ingredients.add(dishIngredient.getIdIngredients());
+	    }
+	    return ingredients;
+	}
+	
+	@GetMapping("/dishes/{idDish}/allergens")
+	public List<Allergens> getAllergensByDish(@PathVariable(name="idDish") int idDish) {
+		
+	    List<Allergens> allergens = new ArrayList<>();
+	    List<DishesIngredients> dishesIngredients = dishesIngredientsServiceImpl.findAllIngredientsByDish(idDish);
+	    
+	    for (DishesIngredients dishIngredient : dishesIngredients) {
+	    	
+	        Allergens allergen = dishIngredient.getIdIngredients().getAllergen();
+	        if (allergen != null && !allergens.contains(allergen)) {
+	        	
+	            allergens.add(allergen);
+	        }
+	    }
+	    return allergens;
 	}
 	
 	@PostMapping("/dishes_ingredients")

@@ -1,4 +1,4 @@
-package com.jetxperience.service;
+ package com.jetxperience.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,12 @@ public class DishesIngredientsServiceImpl implements IDishesIngredientsService {
 	public List<DishesIngredients> listDishesIngredients() {
 		
 		return iDishesIngredientsDAO.findAll();
+	}
+	
+	@Override
+	public List<DishesIngredients> findAllIngredientsByDish(int dish) {
+		
+	    return iDishesIngredientsDAO.findByIdDishes_Id(dish);
 	}
 
 	@Override
