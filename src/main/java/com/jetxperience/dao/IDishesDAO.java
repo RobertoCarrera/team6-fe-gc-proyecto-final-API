@@ -8,5 +8,4 @@ import com.jetxperience.dto.Dishes;
 public interface IDishesDAO extends JpaRepository<Dishes, Integer>{
 
 	public List<Dishes> findByCategoryId(int category);
-
 }

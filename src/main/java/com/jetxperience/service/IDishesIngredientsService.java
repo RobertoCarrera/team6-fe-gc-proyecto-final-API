@@ -7,6 +7,8 @@ public interface IDishesIngredientsService {
 
 	public List<DishesIngredients> listDishesIngredients();
 	
+	public List <DishesIngredients> findAllIngredientsByDish(int dish);
+	
 	public DishesIngredients newDishIngredient(DishesIngredients dishIngredient);
 	
 	public DishesIngredients dishIngredientById(int id);
