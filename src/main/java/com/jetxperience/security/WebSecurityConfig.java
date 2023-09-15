@@ -27,29 +27,46 @@ public class WebSecurityConfig {
     private static final String[] SECURED_URLs = {
     		"/api/v1/**",
     		//"/usuarios/**",
-    		"/alergenos/**",
-    		"/respuestas/**",
-    		"/categorias/**",
-    		"/reclamaciones/**",
-    		"/platos_ingredientes/**",
-    		"/platos_pedidos/**",
-    		"/horas/**",
-    		"/horas_pedidos/**",
-    		"/ingredientes/**",
-    		"/pedidos/**",
-    		"/premios/**",
-    		"/roles/**",
-    		"/usuarios_alergenos/**",
-    		"/usuarios_platos/**",
-    		"/usuarios_ingredientes/**",
-    		"/usuarios_premios/**"
 
     };
 
     private static final String[] UN_SECURED_URLs = {
     		"/login/**",
     		"/platos/**",
-    		"/usuarios/**"
+    		"/users/**",
+    		"/allergens",
+    		"/allergens/**",
+    		"/answers",
+    		"/answers/**",
+    		"/categories",
+    		"/categories/**",
+    		"/complaints",
+    		"/complaints/**",
+    		"/dishes",
+    		"/dishes/**",
+    		"/dishes_ingredients",
+    		"/dishes_ingredients/**",
+    		"/dishes_orders",
+    		"/dishes_orders/**",
+    		"/hours",
+    		"/hours/**",
+    		"/ingredients",
+    		"/ingredients/**",
+    		"/orders",
+    		"/orders/**",
+    		"/rewards",
+    		"/rewards/**",
+    		"/roles",
+    		"/roles/**",
+    		"/users_allergens",
+    		"/users_allergens/**",
+    		"/users_dishes",
+    		"/users_dishes/**",
+    		"/users_ingredients",
+    		"/users_ingredients/**",
+    		"/users_rewards",
+    		"/users_rewards/**"
+    		
     };
 
     @Autowired
@@ -79,7 +96,8 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(UN_SECURED_URLs).permitAll().and()
                 .authorizeHttpRequests().requestMatchers(SECURED_URLs)
-                .hasAuthority("Administrador").anyRequest().authenticated()
+                .hasAnyAuthority("Administrador", "Usuario") // Permitir tanto "Administrador" como "Usuario"
+                .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -87,6 +105,9 @@ public class WebSecurityConfig {
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
+    
+    
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();

@@ -10,8 +10,10 @@ import com.jetxperience.dto.Users;
 @Repository
 public interface IUsersDAO extends JpaRepository<Users, Long> {
 	
-Optional<Users> findByEmail(String email);
+	// Buscar usuario por email
 	
-void deleteByEmail(String email);
+	Optional<Users> findByEmail(String email);
+	
+	void deleteByEmail(String email);
 
 }

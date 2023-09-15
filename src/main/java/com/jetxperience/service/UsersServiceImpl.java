@@ -1,6 +1,8 @@
 package com.jetxperience.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.jetxperience.dao.IUsersDAO;
@@ -41,6 +43,15 @@ public class UsersServiceImpl implements IUsersService {
 
 		iUsersServiceDAO.deleteByEmail(email);
 	}
+	
+	@Override
+	public Optional<Users> getUserByEmail(String email) {
+
+		return iUsersServiceDAO.findByEmail(email);
+	}
+	
+	
+	
 	
     @Override
     public String getRoleNameByEmail(String email) {
