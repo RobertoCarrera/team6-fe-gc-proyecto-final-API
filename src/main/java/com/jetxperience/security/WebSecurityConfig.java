@@ -25,12 +25,12 @@ import com.jetxperience.jwt.JWTAuthenticationFilter;
 public class WebSecurityConfig {
 
     private static final String[] SECURED_URLs = {
-    		"/api/v1/**",
     		//"/usuarios/**",
 
     };
 
     private static final String[] UN_SECURED_URLs = {
+    		"/api/v1/**",
     		"/login/**",
     		"/platos/**",
     		"/users/**",
