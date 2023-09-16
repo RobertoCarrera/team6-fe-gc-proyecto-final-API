@@ -5,7 +5,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,10 +15,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.jetxperience.security.WebUserDetailsService;
 
 import java.io.IOException;
-
-/**
- * @author Samson Effes
- */
 
 @Component
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
