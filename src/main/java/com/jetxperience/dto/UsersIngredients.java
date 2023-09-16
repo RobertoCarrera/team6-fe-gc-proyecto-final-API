@@ -17,8 +17,8 @@ public class UsersIngredients{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="is_available", nullable=false)
-    private boolean isAvailable;
+    @Column(name="disliked_counter")
+    private int dislikedCounter;
     
     @Column(name="is_disliked", nullable=false)
     private boolean isDisliked;
@@ -55,11 +55,23 @@ public class UsersIngredients{
         this.idIngredients = idIngredients;
     }
 
-    public boolean isDisliked() {
+    public void getIsDisliked(boolean newIsDisliked) {
+    	
+        this.isDisliked= newIsDisliked ;
+    }
+    
+    public boolean setIsDisliked() {
+    	
         return isDisliked;
     }
 
-    public void setAvailable(boolean isDisliked) {
-        this.isDisliked = isDisliked;
+    public void getDislikedCounter(int newDislikedCounter) {
+    	
+        this.dislikedCounter= newDislikedCounter ;
+    }
+    
+    public int setDislikedCounter() {
+    	
+        return dislikedCounter;
     }
 }
