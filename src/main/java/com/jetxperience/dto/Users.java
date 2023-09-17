@@ -47,7 +47,7 @@ public class Users {
     private String image;
 
     @Column(name = "points")
-    private Integer points;
+    private int points;
 
     @ManyToOne
     @JoinColumn(name = "role")

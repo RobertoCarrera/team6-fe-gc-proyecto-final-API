@@ -44,8 +44,11 @@ public class JWTService {
 		Optional<Users> user = userServiceImpl.getUserByEmail(userName);
 		Users finallyUser = user.get();
 
-		claims.put("user_id", finallyUser.getId());
+		claims.put("id", finallyUser.getId());
 		claims.put("role", finallyUser.getRole());
+
+
+
 
 		return tokenCreator(claims, userName);
 	}
