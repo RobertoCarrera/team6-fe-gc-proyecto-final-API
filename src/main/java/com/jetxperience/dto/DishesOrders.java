@@ -20,11 +20,11 @@ public class DishesOrders {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_dish")
+    @JoinColumn(name = "id_dishes")
     private Dishes idDishes;
 
     @ManyToOne
-    @JoinColumn(name = "id_order")
+    @JoinColumn(name = "id_orders")
     private Orders orders;
 
     @Column(name = "quantity")
