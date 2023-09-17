@@ -83,9 +83,9 @@ public class UsersServiceImpl implements IUsersService {
 	
 	@Override
 	@Transactional
-	public Optional<Users> getUserById(int id) {
+	public Users getUserById(int id) {
 
-		return iUsersServiceDAO.findById(id);
+		return iUsersServiceDAO.findById(id).get();
 	}
 	
 	

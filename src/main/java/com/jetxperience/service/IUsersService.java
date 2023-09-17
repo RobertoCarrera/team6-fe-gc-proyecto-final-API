@@ -18,7 +18,9 @@ public interface IUsersService {
 	public Users updateUser(Users user);
 	
 	// Buscar usuario por id
-	public Optional<Users> getUserById(int id);
+	
+	public Users getUserById(int id);
+
 	
 	// Buscar usuario por email
 	public Optional<Users> getUserByEmail(String email);

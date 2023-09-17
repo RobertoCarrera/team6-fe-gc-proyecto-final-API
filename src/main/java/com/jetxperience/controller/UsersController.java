@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,12 +46,12 @@ public class UsersController {
 	}
 	
 	// Buscar usuario por id
+	
 	@GetMapping("/users/id/{id}")
-	public Optional<Users> getUserById(@PathVariable(name = "id") int id) {
+	public Users getUserById(@PathVariable(name = "id") int id) {
 
 		return usersServiceImpl.getUserById(id);
 	}
-	
 	
 	// Buscar usuario por email
 	@GetMapping("/users/email/{email}")
@@ -88,10 +89,23 @@ public class UsersController {
 	
 	
 	
+
+	// 
+
 	@PostMapping("/users")
 	public Users newUser(@RequestBody Users user) {
-		
-		return usersServiceImpl.newUser(user);
+	    // Obtiene la contraseña en texto claro del usuario
+	    String plainPassword = user.getPassword();
+
+	    // Encripta la contraseña usando BCrypt
+	    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	    String hashedPassword = passwordEncoder.encode(plainPassword);
+
+	    // Establece la contraseña encriptada en el objeto de usuario
+	    user.setPassword(hashedPassword);
+
+	    // Llama al servicio para guardar el usuario en la base de datos
+	    return usersServiceImpl.newUser(user);
 	}
 
 	
@@ -100,6 +114,10 @@ public class UsersController {
 		
 		Users user_selected = new Users();
 		Users user_updated = new Users();
+		
+		user_selected = usersServiceImpl.getUserById(id);
+
+
 		
 		user_selected.setActive(user.isActive());
 		user_selected.setName(user.getName());
