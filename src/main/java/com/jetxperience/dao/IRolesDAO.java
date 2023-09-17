@@ -4,5 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.jetxperience.dto.Roles;
 
 public interface IRolesDAO extends JpaRepository<Roles, Integer>{
+	public Roles findByName(String name);
 
 }

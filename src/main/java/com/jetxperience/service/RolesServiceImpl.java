@@ -35,7 +35,14 @@ public class RolesServiceImpl implements IRolesService {
 
 		return iRolesDAO.save(roles);
 	}
+	
+	@Override
+	public Roles getRoleByName(String name) {
 
+		return iRolesDAO.findByName(name);
+	}
+	
+	
 	@Override
 	public void deleteRole(int id) {
 

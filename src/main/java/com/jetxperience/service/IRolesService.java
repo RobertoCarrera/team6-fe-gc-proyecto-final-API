@@ -14,4 +14,7 @@ public interface IRolesService {
 	public Roles updateRole(Roles roles);
 	
 	public void deleteRole(int id);
+	
+	public Roles getRoleByName(String name);
+
 }

@@ -32,7 +32,6 @@ public class WebSecurityConfig {
     private static final String[] UN_SECURED_URLs = {
     		"/api/v1/**",
     		"/login/**",
-    		"/platos/**",
     		"/users/**",
     		"/allergens",
     		"/allergens/**",
@@ -47,6 +46,7 @@ public class WebSecurityConfig {
     		"/dishes_ingredients",
     		"/dishes_ingredients/**",
     		"/dishes_orders",
+    		"dishesorders",
     		"/dishes_orders/**",
     		"/hours",
     		"/hours/**",
