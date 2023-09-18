@@ -24,7 +24,7 @@ public class ComplaintsController {
 		return complaintsServiceImpl.listComplaints(); 
 	}
 	
-	@GetMapping("/complaints/{id}")
+	@GetMapping("/complaints/id/{id}")
 	public Complaints complaintById(@PathVariable(name="id") int id) {
 		
 		Complaints complaint_byID = new Complaints();
