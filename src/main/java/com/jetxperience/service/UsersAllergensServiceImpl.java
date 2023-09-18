@@ -17,7 +17,12 @@ public class UsersAllergensServiceImpl implements IUsersAllergensService {
 
 		return iUsersAllergensDAO.findAll();
 	}
-
+	
+	public List<UsersAllergens> listUsersAllergensByUserId(int id){
+		
+		return iUsersAllergensDAO.findByIdUsersId(id);
+	}
+	
 	@Override
 	public UsersAllergens newUserAllergen(UsersAllergens userAllergen) {
 
