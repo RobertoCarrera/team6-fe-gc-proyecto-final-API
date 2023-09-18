@@ -1,6 +1,7 @@
 package com.jetxperience.service;
 
 import java.util.List;
+import com.jetxperience.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.jetxperience.dao.IUsersRewardsDAO;
