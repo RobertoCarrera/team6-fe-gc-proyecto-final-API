@@ -17,6 +17,11 @@ public class UsersRewardsServiceImpl implements IUsersRewardsService {
 
 		return iUsersRewardsDAO.findAll();
 	}
+	
+	public List<UsersRewards> listUsersRewardsByUserId(int id){
+		
+		return iUsersRewardsDAO.findByIdUsersId(id);
+	}
 
 	@Override
 	public UsersRewards newUserReward(UsersRewards userReward) {

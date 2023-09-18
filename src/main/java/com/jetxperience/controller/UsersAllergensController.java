@@ -15,12 +15,18 @@ import com.jetxperience.dto.UsersAllergens;
 public class UsersAllergensController {
 
 	@Autowired
-	UsersAllergensServiceImpl usuarios_alergenosServiceImpl;
+	UsersAllergensServiceImpl users_allergensServiceImpl;
 	
 	@GetMapping("/users_allergens")
 	public List<UsersAllergens> listUsersAllergens(){
 		
-		return usuarios_alergenosServiceImpl.listUsersAllergens(); 
+		return users_allergensServiceImpl.listUsersAllergens(); 
+	}
+	
+	@GetMapping("/users_allergens/user/{id}")
+	public List<UsersAllergens> listUsersAllergensByUsers(@PathVariable int id){
+		
+		return users_allergensServiceImpl.listUsersAllergensByUserId(id);
 	}
 	
 	@GetMapping("/users_allergens/{id}")
@@ -28,7 +34,7 @@ public class UsersAllergensController {
 		
 		UsersAllergens usersAllergens_byID = new UsersAllergens();
 		
-		usersAllergens_byID = usuarios_alergenosServiceImpl.userAllergenById(id);
+		usersAllergens_byID = users_allergensServiceImpl.userAllergenById(id);
 		
 		System.out.println("Usuario_Alérgeno byID: "+usersAllergens_byID);
 		
@@ -38,12 +44,12 @@ public class UsersAllergensController {
 	@PostMapping("/users_allergens")
 	public UsersAllergens newUserAllergen(@RequestBody UsersAllergens usersAllergens) {
 		
-		return usuarios_alergenosServiceImpl.newUserAllergen(usersAllergens);
+		return users_allergensServiceImpl.newUserAllergen(usersAllergens);
 	}
 	
 	@DeleteMapping("/users_allergens/{id}")
 	public void deleteUserAllergen(@PathVariable(name="id") int id) {
 		
-		usuarios_alergenosServiceImpl.deleteUserAllergen(id);
+		users_allergensServiceImpl.deleteUserAllergen(id);
 	}
 }
