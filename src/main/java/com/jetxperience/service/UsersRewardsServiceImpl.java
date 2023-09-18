@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.jetxperience.dao.IUsersRewardsDAO;
-import com.jetxperience.dto.Rewards;
 import com.jetxperience.dto.UsersRewards;
 
 @Service
@@ -19,9 +18,9 @@ public class UsersRewardsServiceImpl implements IUsersRewardsService {
 		return iUsersRewardsDAO.findAll();
 	}
 	
-	public List<Rewards> listRewardsUsers(int id){
+	public List<UsersRewards> listUsersRewardsByUserId(int id){
 		
-		return iUsersRewardsDAO.findRewardsByIdUsers(id);
+		return iUsersRewardsDAO.findByIdUsersId(id);
 	}
 
 	@Override

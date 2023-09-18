@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.jetxperience.service.UsersRewardsServiceImpl;
-import com.jetxperience.dto.Rewards;
 import com.jetxperience.dto.UsersRewards;
 
 @RestController
@@ -25,9 +24,9 @@ public class UsersRewardsController {
 	}
 	
 	@GetMapping("/users_rewards/user/{id}")
-	public List<Rewards> listRewardsUsers(@PathVariable int id){
+	public List<UsersRewards> listUsersRewardsByUsers(@PathVariable int id){
 		
-		return users_rewardsServiceImpl.listRewardsUsers(id);
+		return users_rewardsServiceImpl.listUsersRewardsByUserId(id);
 	}
 	
 	@GetMapping("/users_rewards/{id}")
