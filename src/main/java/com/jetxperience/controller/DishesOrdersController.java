@@ -35,6 +35,12 @@ public class DishesOrdersController {
 		return dishOrder_byID;
 	}
 	
+    @GetMapping("/dishes_in_order/{orderId}")
+    public List<DishesOrders> getDishesInOrderByOrderId(@PathVariable int idOrders) {
+    	
+        return dishesOrdersServiceImpl.findDishesByidOrders(idOrders);
+    }
+	
 	@PostMapping("/dishes_orders")
 	public DishesOrders newDishOrder(@RequestBody DishesOrders dishOrder) {
 		

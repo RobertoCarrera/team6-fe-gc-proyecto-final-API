@@ -24,6 +24,11 @@ public class DishesOrdersServiceImpl implements IDishesOrdersService {
 		return iDishesOrdersDAO.save(dishOrder);
 	}
 
+    public List<DishesOrders> findDishesByidOrders(int idOrders) {
+    	
+        return iDishesOrdersDAO.findByIdOrders(idOrders);
+    }
+    
 	@Override
 	public DishesOrders dishOrderByID(int id) {
 		
