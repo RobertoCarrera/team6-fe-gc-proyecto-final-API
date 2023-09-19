@@ -126,6 +126,8 @@ public class UsersController {
 		user_selected.setPassword(user.getPassword());
 		user_selected.setRole(user.getRole());
 		user_selected.setImage(user.getImage());
+		user_selected.setPoints(user.getPoints());
+
 		
 		user_updated = usersServiceImpl.updateUser(user_selected);
 		
