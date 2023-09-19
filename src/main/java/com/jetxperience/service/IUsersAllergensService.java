@@ -11,7 +11,9 @@ public interface IUsersAllergensService {
 	
 	public UsersAllergens userAllergenById(int id);
 	
-	public UsersAllergens updateUserAllergen(UsersAllergens userAllergen);
+    public boolean updateIsAllergicStatus(int idUsers, int idAllergens, boolean isAllergic);
+    
+    public Boolean getIsAllergicStatus(int idUsers, int idAllergens);
 	
 	public void deleteUserAllergen(int id);
 }

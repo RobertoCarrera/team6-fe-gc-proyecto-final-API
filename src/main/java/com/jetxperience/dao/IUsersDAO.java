@@ -4,12 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import com.jetxperience.dto.Roles;
 import com.jetxperience.dto.Users;
 
-@Repository
 public interface IUsersDAO extends JpaRepository<Users, Long> {
 	
 	// Buscar usuario por email
@@ -35,5 +33,4 @@ public interface IUsersDAO extends JpaRepository<Users, Long> {
 	public List<Users> findByRoleOrderByNameAsc(Roles role);
 	
 	void deleteById(int id);
-
 }

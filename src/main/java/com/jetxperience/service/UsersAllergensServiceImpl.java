@@ -24,6 +24,17 @@ public class UsersAllergensServiceImpl implements IUsersAllergensService {
 	}
 	
 	@Override
+	public Boolean getIsAllergicStatus(int idUsers, int idAllergens) {
+	    UsersAllergens userAllergen = iUsersAllergensDAO.findByIdUsersIdAndIdAllergensId(idUsers, idAllergens);
+
+	    if (userAllergen != null) {
+	        return userAllergen.getIsAllergic();
+	    }
+
+	    return null; // No se encontró el registro
+	}
+	
+	@Override
 	public UsersAllergens newUserAllergen(UsersAllergens userAllergen) {
 
 		return iUsersAllergensDAO.save(userAllergen);
@@ -35,11 +46,18 @@ public class UsersAllergensServiceImpl implements IUsersAllergensService {
 		return iUsersAllergensDAO.findById(id).get();
 	}
 
-	@Override
-	public UsersAllergens updateUserAllergen(UsersAllergens userAllergen) {
+    @Override
+    public boolean updateIsAllergicStatus(int idUsers, int idAllergens, boolean isAllergic) {
+        UsersAllergens userAllergen = iUsersAllergensDAO.findByIdUsersIdAndIdAllergensId(idUsers, idAllergens);
 
-		return iUsersAllergensDAO.save(userAllergen);
-	}
+        if (userAllergen != null) {
+            userAllergen.setIsAllergic(isAllergic);
+            iUsersAllergensDAO.save(userAllergen);
+            return true; // La actualización fue exitosa
+        }
+
+        return false; // No se encontró el registro a actualizar
+    }
 
 	@Override
 	public void deleteUserAllergen(int id) {

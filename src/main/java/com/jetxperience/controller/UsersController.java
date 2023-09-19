@@ -117,8 +117,6 @@ public class UsersController {
 		
 		user_selected = usersServiceImpl.getUserById(id);
 
-
-		
 		user_selected.setActive(user.isActive());
 		user_selected.setName(user.getName());
 		user_selected.setSurname(user.getSurname());

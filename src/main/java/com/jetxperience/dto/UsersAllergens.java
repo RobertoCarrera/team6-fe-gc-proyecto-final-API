@@ -26,16 +26,20 @@ public class UsersAllergens {
     @ManyToOne
     @JoinColumn(name = "id_allergens")
     private Allergens idAllergens;
+    
+    @Column(name = "is_allergic")
+    private boolean isAllergic;
 
     // Constructores
     public UsersAllergens() {
 
     }
 
-    public UsersAllergens(int id, Users users, Allergens allergen) {
+    public UsersAllergens(int id, Users users, Allergens allergen, boolean isAllergic) {
         this.id = id;
         this.idUsers = users;
         this.idAllergens = allergen;
+        this.isAllergic = isAllergic;
     }
 
     // Métodos
@@ -56,11 +60,23 @@ public class UsersAllergens {
     }
 
     public Allergens getAllergens() {
+    	
         return idAllergens;
     }
 
     public void setAllergens(Allergens allergens) {
+    	
         this.idAllergens = allergens;
+    }
+    
+    public boolean getIsAllergic() {
+    	
+        return isAllergic;
+    }
+
+    public void setIsAllergic(boolean isAllergic) {
+    	
+        this.isAllergic = isAllergic;
     }
 
     @Override

@@ -8,4 +8,6 @@ import com.jetxperience.dto.UsersAllergens;
 public interface IUsersAllergensDAO extends JpaRepository<UsersAllergens, Integer>{
 
 	public List<UsersAllergens> findByIdUsersId(int id);
+	
+	public UsersAllergens findByIdUsersIdAndIdAllergensId(int idUsers, int idAllergens);
 }
