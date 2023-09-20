@@ -54,6 +54,9 @@ public class DishesController {
 		Dishes dish_selected = new Dishes();
 		Dishes dish_updated = new Dishes();
 		
+		dish_selected = dishesServiceImpl.dishByID(id);
+
+		
 		dish_selected.setIsActive(dish.getIsActive());
 		dish_selected.setName(dish.getName());
 		dish_selected.setImage(dish.getImage());
@@ -63,6 +66,9 @@ public class DishesController {
 		dish_selected.setIsSuggested(dish.getIsSuggested());
 		dish_selected.setIsHighlighted(dish.getIsHighlighted());
 		dish_selected.setIsAvailable(dish.getIsAvailable());
+		dish_selected.setStock(dish.getStock());
+		dish_selected.setCategory(dish.getCategory());
+
 		
 		dish_updated = dishesServiceImpl.updateDish(dish_selected);
 		
@@ -71,7 +77,7 @@ public class DishesController {
 		return dish_updated;
 	}
 	
-	@DeleteMapping("/dishes/{id}")
+	@DeleteMapping("/dishes/id/{id}")
 	public void deleteDish(@PathVariable(name="id") int id) {
 		
 		dishesServiceImpl.deleteDish(id);

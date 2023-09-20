@@ -58,7 +58,7 @@ public class Dishes{
     }
     
     public Dishes(boolean isActive, String name, String image, double cost, String description,
-    		boolean isRecommended, boolean isSuggested, boolean isHighlighted, boolean isAvailable, int stock) {
+    		boolean isRecommended, boolean isSuggested, boolean isHighlighted, boolean isAvailable, int stock, Categories category) {
     	
     	this.isActive = isActive;
     	this.name = name;
@@ -70,6 +70,8 @@ public class Dishes{
     	this.isHighlighted = isHighlighted;
     	this.isAvailable = isAvailable;
     	this.stock = stock;
+    	this.category = category;
+
     }
 
     public short getId() {
@@ -158,9 +160,21 @@ public class Dishes{
         return stock;
     }
 
-    public void setStock(int aStock) {
-        stock = aStock;
+    public void setStock(int Stock) {
+        stock = Stock;
     }
+    
+    public Categories getCategory() {
+        return category;
+    }
+    
+   public void setCategory(Categories category) {
+    	this.category = category;
+   }
+    
+    
+    
+    
 
     @Override
     public String toString() {
